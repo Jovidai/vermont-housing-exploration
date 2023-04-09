@@ -1,0 +1,2261 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="og:url" content="https://jovidai.github.io/vermont-housing-exploration/"/>
+	<meta property="og:title" content="Rising Homelessness in Vermont Linked to Low Median Household Income and Lack of Well-Paying Jobs">
+	<meta property="og:description" content="Vermont's Housing Crisis: Exploring the Link between Median Household Income, Jobs, Wages, and Homelessness.">
+	<meta property="og:type" content="article">
+	<meta name="og:title" content="Explore the Correlation Between Low Wages and Homelessness Rates in Vermont"/>
+	<meta property="og:image" content="./images/plane.png"> <!-- Need to change here -->
+	<meta name="author" content="Zhaozhou Dai">
+	
+    <style>
+	@import url('https://fonts.googleapis.com/css2?family=Cabin+Sketch:wght@700&family=Nunito&display=swap');
+	@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;700&display=swap');
+	@import url('https://fonts.googleapis.com/css2?family=Assistant&family=Cardo:ital@1&family=Frank+Ruhl+Libre&family=Lora:ital,wght@1,600&display=swap');
+    
+	body {
+	--primaryHeadlineFont: 'Poppins', sans-serif;
+	--secHlFont: 'Poppins', sans-serif;
+	--bodyFont: 'Poppins', sans-serif;
+    }
+	</style>
+
+	<!-- Content -->
+	<link rel="icon" type="image/x-icon" href="./images/vermont_public_logo.jpeg">
+	<title>Rising Homelessness in Vermont Linked to Low Median Household Income and Lack of Well-Paying Jobs</title>
+	<div class="vermontpublic-top">
+		<img src="./images/vermont_headline.png" width=1500px>
+	</div>
+	
+
+	<!-- css files-->
+    <link rel="stylesheet" type="text/css" href="./style/style.css" />
+
+	<!-- script files-->
+	<script src="https://unpkg.com/intersection-observer@0.5.1/intersection-observer.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/scrollama/3.0.4/scrollama.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.3.0/d3.min.js"></script>
+	
+  </head>
+
+  <body>
+
+	<div class='full-bleed-image' style='background-image: url("images/front.jpg")'>
+		<div class='title-container'>
+			<div class='image-text'>Rising Homelessness in Vermont Linked to Low Median Household Income and Lack of Well-Paying Jobs</div>
+		</div>
+	</div>
+	<div class="byline">"<a href="https://www.flickr.com/photos/29858421@N04/6768170629" target="new">Montpelier VT. - Vermont State House Capitol 09</a>" by <a href="https://www.flickr.com/photos/29858421@N04" target="new">Daniel Mennerich</a> is licensed under <a href="https://creativecommons.org/licenses/by-nd-nc/2.0/jp/?ref=openverse" target="new">CC BY-NC-ND 2.0</a>.</div>
+	
+	<br>
+	<br>
+
+	<div class="text-container">
+		<p class="byline_2">By <a href="https://www.jovidai.com/" target="new">Zhaozhou Dai</a></p>
+		<br>
+		<p>A widely recognized notion is that higher median household income and wages generally contribute to greater financial stability for individuals and families, reducing the likelihood of experiencing homelessness. Additionally, access to secure, well-paying employment opportunities can mitigate the risk of homelessness by providing individuals with the financial means to afford necessities, including housing.</p>
+	    <p>Conversely, low median household income, inadequate wages, and scarce job prospects can elevate the risk of homelessness for individuals and families as they struggle to afford essential needs such as shelter.</p>
+	    <p>Furthermore, homelessness can have repercussions on the local job market and economy by deterring businesses from investing or relocating to an area due to negative perceptions about the safety and stability of the community. As a result, it can constrain the region's job prospects and economic development.</p>
+        <p>However, the data available on <a href="https://housingdata.org/profile" target="new">Vermont Housing Finance Agency</a> indicates that higher median household income and wages do not necessarily guarantee greater financial stability for individuals and families or alleviate the issue of homelessness.</p>
+	</div>
+
+	<br>
+	<br>
+
+      <section id="scrolly">
+        <div class="sticky-thing">
+			<div class="ai2html-container">
+				<script type="text/javascript">
+					(function() {
+						// only want one resizer on the page
+						if (document.documentElement.className.indexOf("g-resizer-v3-init") > -1) return;
+						document.documentElement.className += " g-resizer-v3-init";
+						// require IE9+
+						if (!("querySelector" in document)) return;
+						function resizer() {
+							var elements = Array.prototype.slice.call(document.querySelectorAll(".g-artboard[data-min-width]")),
+								widthById = {};
+							elements.forEach(function(el) {
+								var  parent  =  el . parentNode ,
+									width = widthById[parent.id] || parent.getBoundingClientRect().width,
+									minwidth = el.getAttribute("data-min-width"),
+									maxwidth = el.getAttribute("data-max-width");
+								widthById[parent.id] = width;
+				
+								if (+minwidth <= width && (+maxwidth >= width || maxwidth === null)) {
+									el.style.display = "block";
+								} else {
+									el.style.display = "none";
+								}
+							} ) ;
+							try {
+								if (window.parent && window.parent.$) {
+									window.parent.$("body").trigger("resizedcontent", [window]);
+								}
+								if (window.require) {
+									require(['foundation/main'], function() {
+										require(['shared/interactive/instances/app-communicator'], function(AppCommunicator) {
+											AppCommunicator.triggerResize();
+										} ) ;
+									} ) ;
+								}
+							} catch(e) { console.log(e); }
+						}
+				
+						document.addEventListener('DOMContentLoaded', resizer);
+						// feel free to replace throttle with _.throttle, if available
+						window.addEventListener('resize', throttle(resizer, 200));        
+				
+						function throttle(func, wait) {
+							// from underscore.js
+							var _now = Date.now || function() { return new Date().getTime(); },
+								context, args, result, timeout = null, previous = 0;
+							var  later  =  function ( )  {
+								previous = _now();
+								timeout = null;
+								result = func.apply(context, args);
+								if (!timeout) context = args = null;
+							} ;
+							return function() {
+								var now = _now(), remaining = wait - (now - previous);
+								context = this;
+								args = arguments;
+								if (remaining <= 0 || remaining > wait) {
+									if (timeout) {
+										clearTimeout(timeout);
+										timeout = null;
+									}
+									previous = now;
+									result = func.apply(context, args);
+									if (!timeout) context = args = null;
+								} else if (!timeout && options.trailing !== false) {
+									timeout = setTimeout(later, remaining);
+								}
+								return result;
+							} ;
+						}
+				
+					   
+					} ) ( ) ;
+				</script>
+
+<!-- Generated by ai2html v0.115.1 - 2023-04-09 01:05 -->
+<!-- ai file: vermont-map-NEW.ai -->
+<style media="screen,print">
+	#g-vermont-map-NEW-box ,
+	#g-vermont-map-NEW-box .g-artboard {
+		margin:0 auto;
+	}
+	#g-vermont-map-NEW-box p {
+		margin:0;
+	}
+	#g-vermont-map-NEW-box .g-aiAbs {
+		position:absolute;
+	}
+	#g-vermont-map-NEW-box .g-aiImg {
+		position:absolute;
+		top:0;
+		display:block;
+		width:100% !important;
+	}
+	#g-vermont-map-NEW-box .g-aiSymbol {
+		position: absolute;
+		box-sizing: border-box;
+	}
+	#g-vermont-map-NEW-box .g-aiPointText p { white-space: nowrap; }
+	#g-vermont-map-NEW-Artboard_9 {
+		position:relative;
+		overflow:hidden;
+	}
+	#g-vermont-map-NEW-Artboard_9 p {
+		font-weight:700;
+		line-height:15px;
+		height:auto;
+		opacity:1;
+		letter-spacing:0em;
+		font-size:13px;
+		text-align:left;
+		color:rgb(0,0,0);
+		text-transform:none;
+		padding-bottom:0;
+		padding-top:0;
+		mix-blend-mode:normal;
+		font-style:normal;
+		position:static;
+	}
+	#g-vermont-map-NEW-Artboard_9 .g-pstyle0 {
+		height:15px;
+	}
+	#g-vermont-map-NEW-Artboard_9 .g-pstyle1 {
+		font-weight:500;
+		height:15px;
+	}
+	#g-vermont-map-NEW-Artboard_9 .g-pstyle2 {
+		line-height:18px;
+		height:18px;
+		font-size:15px;
+		text-align:center;
+	}
+	#g-vermont-map-NEW-Artboard_9 .g-pstyle3 {
+		font-weight:500;
+		line-height:14px;
+		height:14px;
+		font-size:12px;
+	}
+	#g-vermont-map-NEW-Artboard_9 .g-pstyle4 {
+		line-height:17px;
+		height:17px;
+		font-size:15px;
+		text-align:center;
+	}
+	#g-vermont-map-NEW-Artboard_9 .g-pstyle5 {
+		line-height:18px;
+		height:18px;
+		font-size:15px;
+	}
+	#g-vermont-map-NEW-Artboard_9 .g-pstyle6 {
+		font-weight:500;
+		line-height:17px;
+		height:17px;
+		font-size:14px;
+	}
+	#g-vermont-map-NEW-Artboard_11 {
+		position:relative;
+		overflow:hidden;
+	}
+	#g-vermont-map-NEW-Artboard_11 p {
+		font-weight:700;
+		line-height:15px;
+		height:auto;
+		opacity:1;
+		letter-spacing:0em;
+		font-size:12px;
+		text-align:left;
+		color:rgb(0,0,0);
+		text-transform:none;
+		padding-bottom:0;
+		padding-top:0;
+		mix-blend-mode:normal;
+		font-style:normal;
+		position:static;
+	}
+	#g-vermont-map-NEW-Artboard_11 .g-pstyle0 {
+		height:15px;
+	}
+	#g-vermont-map-NEW-Artboard_11 .g-pstyle1 {
+		font-weight:500;
+		height:15px;
+	}
+	#g-vermont-map-NEW-Artboard_11 .g-pstyle2 {
+		line-height:18px;
+		height:18px;
+		font-size:15px;
+		text-align:center;
+	}
+	#g-vermont-map-NEW-Artboard_11 .g-pstyle3 {
+		line-height:18px;
+		height:18px;
+		font-size:15px;
+	}
+	#g-vermont-map-NEW-Artboard_11 .g-pstyle4 {
+		font-weight:500;
+		line-height:16px;
+		height:16px;
+		font-size:13px;
+	}
+	#g-vermont-map-NEW-Artboard_11 .g-pstyle5 {
+		font-weight:500;
+		line-height:14px;
+		height:14px;
+	}
+	#g-vermont-map-NEW-Artboard_11 .g-pstyle6 {
+		font-weight:500;
+		line-height:13px;
+		height:13px;
+		font-size:10px;
+	}
+
+</style>
+
+<div id="g-vermont-map-NEW-box" class="ai2html">
+
+	<!-- Artboard: Artboard_9 -->
+	<div id="g-vermont-map-NEW-Artboard_9" class="g-artboard" style="width:971px; height:719.5px;" data-aspect-ratio="1.35" data-min-width="971">
+<div style=""></div>
+		<img id="g-vermont-map-NEW-Artboard_9-img" class="g-vermont-map-NEW-Artboard_9-img g-aiImg" alt="" src="./images/svg/ai2html-output/vermont-map-NEW-Artboard_9.png"/>
+<!-- Generator: Adobe Illustrator 27.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg class="g-vermont-map-NEW-Artboard_9-interactions-img g-aiImg" version="1.2" baseProfile="tiny" id="g-vermont-map-NEW-Artboard_9-interactions-img" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	 x="0px" y="0px" viewBox="0 0 971 719.5" overflow="visible" xml:space="preserve">
+<g>
+	<g id="homeless-box" data-name="homeless-box">
+		<rect x="661.671" y="578.356" fill="none" stroke="#999999" stroke-miterlimit="10" width="211.19" height="47.131"/>
+		<text transform="matrix(0.9864 0 0 1 582.9141 1347.793)" font-family="'Helvetica'" font-size="13.4649px">V</text>
+		<text transform="matrix(0.9864 0 0 1 591.0469 1347.793)" font-family="'Helvetica'" font-size="13.4649px">e</text>
+		<text transform="matrix(0.9864 0 0 1 598.4326 1347.793)" font-family="'Helvetica'" font-size="13.4649px">r</text>
+		<text transform="matrix(0.9864 0 0 1 602.8555 1347.793)" font-family="'Helvetica'" font-size="13.4649px">m</text>
+		<text transform="matrix(0.9864 0 0 1 613.9199 1347.793)" font-family="'Helvetica'" font-size="13.4649px">o</text>
+		<text transform="matrix(0.9864 0 0 1 621.3057 1347.793)" font-family="'Helvetica'" font-size="13.4649px">n</text>
+		<text transform="matrix(0.9864 0 0 1 628.6924 1347.793)" font-family="'Helvetica'" font-size="13.4649px">t</text>
+		<text transform="matrix(0.9864 0 0 1 691.2969 1348.1436)" font-family="'Helvetica'" font-size="13.4649px">2,780</text>
+		<text transform="matrix(0.7539 0 0 1 566.5605 1312.0215)" font-family="'Helvetica-Bold'" font-size="14.6895px">Number of Homeless</text>
+		<rect x="567.175" y="1320.653" fill="none" stroke="#999999" stroke-miterlimit="10" width="185.094" height="45.614"/>
+	</g>
+	<g id="income-box" data-name="income-box">
+		<rect x="659.448" y="401.615" fill="none" stroke="#999999" stroke-miterlimit="10" width="211.19" height="47.131"/>
+		<text transform="matrix(0.7539 0 0 1 564.7383 1143.0547)" font-family="'Helvetica-Bold'" font-size="14.6895px">Median Household Income</text>
+		<text transform="matrix(0.9397 0 0 1 640.7383 1229.4727)" font-family="'Helvetica'" font-size="12.4401px">Legend</text>
+		<text transform="matrix(0.8982 0 0 1 556.2324 1252.3535)" font-family="'Helvetica'" font-size="11.6081px">47,035</text>
+		<text transform="matrix(0.8982 0 0 1 734.4609 1250.041)" font-family="'Helvetica'" font-size="11.6081px">81,667</text>
+		<text transform="matrix(0.9864 0 0 1 582.4902 1176.8203)" font-family="'Helvetica'" font-size="13.4649px">V</text>
+		<text transform="matrix(0.9864 0 0 1 590.623 1176.8203)" font-family="'Helvetica'" font-size="13.4649px">e</text>
+		<text transform="matrix(0.9864 0 0 1 598.0088 1176.8203)" font-family="'Helvetica'" font-size="13.4649px">r</text>
+		<text transform="matrix(0.9864 0 0 1 602.4316 1176.8203)" font-family="'Helvetica'" font-size="13.4649px">m</text>
+		<text transform="matrix(0.9864 0 0 1 613.4961 1176.8203)" font-family="'Helvetica'" font-size="13.4649px">o</text>
+		<text transform="matrix(0.9864 0 0 1 620.8818 1176.8203)" font-family="'Helvetica'" font-size="13.4649px">n</text>
+		<text transform="matrix(0.9864 0 0 1 628.2686 1176.8203)" font-family="'Helvetica'" font-size="13.4649px">t</text>
+		<text transform="matrix(0.9864 0 0 1 679.1816 1177.168)" font-family="'Helvetica'" font-size="13.4649px">$63,447</text>
+		<rect x="565.227" y="1149.601" fill="none" stroke="#999999" stroke-miterlimit="10" width="185.094" height="45.614"/>
+	</g>
+	<g id="county-names" data-name="county-names">
+		<text transform="matrix(0.9397 0 0 1 266.5039 838.8125)" font-family="'Helvetica-Bold'" font-size="12.4401px">Grandlsle County</text>
+		<text transform="matrix(0.9397 0 0 1 359.0449 817.041)" font-family="'Helvetica-Bold'" font-size="12.4401px">Franklin County</text>
+		<text transform="matrix(0.9397 0 0 1 488.1816 830.3682)" font-family="'Helvetica-Bold'" font-size="12.4401px">Orleans County</text>
+		<text transform="matrix(0.9397 0 0 1 590.4824 862.9775)" font-family="'Helvetica-Bold'" font-size="12.4401px">Essex County</text>
+		<text transform="matrix(0.9397 0 0 1 307.9551 930.127)" font-family="'Helvetica-Bold'" font-size="12.4401px">Chittenden County</text>
+		<text transform="matrix(0.9397 0 0 1 395.6582 893.9834)" font-family="'Helvetica-Bold'" font-size="12.4401px">Lamolle County</text>
+		<text transform="matrix(0.9397 0 0 1 492.2109 923.917)" font-family="'Helvetica-Bold'" font-size="12.4401px">Caledonia County</text>
+		<text transform="matrix(0.9397 0 0 1 402.6484 985.5029)" font-family="'Helvetica-Bold'" font-size="12.4401px">W</text>
+		<text transform="matrix(0.9397 0 0 1 413.2539 985.5029)" font-family="'Helvetica-Bold'" font-size="12.4401px">a</text>
+		<text transform="matrix(0.9397 0 0 1 419.7559 985.5029)" font-family="'Helvetica-Bold'" font-size="12.4401px">s</text>
+		<text transform="matrix(0.9397 0 0 1 426.2568 985.5029)" font-family="'Helvetica-Bold'" font-size="12.4401px">h</text>
+		<text transform="matrix(0.9397 0 0 1 433.3975 985.5029)" font-family="'Helvetica-Bold'" font-size="12.4401px">i</text>
+		<text transform="matrix(0.9397 0 0 1 436.6455 985.5029)" font-family="'Helvetica-Bold'" font-size="12.4401px">n</text>
+		<text transform="matrix(0.9397 0 0 1 443.7861 985.5029)" font-family="'Helvetica-Bold'" font-size="12.4401px">g</text>
+		<text transform="matrix(0.9397 0 0 1 450.9277 985.5029)" font-family="'Helvetica-Bold'" font-size="12.4401px">t</text>
+		<text transform="matrix(0.9397 0 0 1 454.8203 985.5029)" font-family="'Helvetica-Bold'" font-size="12.4401px">o</text>
+		<text transform="matrix(0.9397 0 0 1 461.9609 985.5029)" font-family="'Helvetica-Bold'" font-size="12.4401px">n</text>
+		<text transform="matrix(0.9397 0 0 1 469.1016 985.5029)" font-family="'Helvetica-Bold'" font-size="12.4401px"> </text>
+		<text transform="matrix(0.9397 0 0 1 472.3496 985.5029)" font-family="'Helvetica-Bold'" font-size="12.4401px">C</text>
+		<text transform="matrix(0.9397 0 0 1 480.792 985.5029)" font-family="'Helvetica-Bold'" font-size="12.4401px">o</text>
+		<text transform="matrix(0.9397 0 0 1 487.9326 985.5029)" font-family="'Helvetica-Bold'" font-size="12.4401px">u</text>
+		<text transform="matrix(0.9397 0 0 1 495.0732 985.5029)" font-family="'Helvetica-Bold'" font-size="12.4401px">n</text>
+		<text transform="matrix(0.9397 0 0 1 502.2139 985.5029)" font-family="'Helvetica-Bold'" font-size="12.4401px">t</text>
+		<text transform="matrix(0.9397 0 0 1 506.1074 985.5029)" font-family="'Helvetica-Bold'" font-size="12.4401px">y</text>
+		<text transform="matrix(0.9397 0 0 1 291.9453 1045.124)" font-family="'Helvetica-Bold'" font-size="12.4401px">Addison County</text>
+		<text transform="matrix(0.9397 0 0 1 455.6719 1061.666)" font-family="'Helvetica-Bold'" font-size="12.4401px">Orange County</text>
+		<text transform="matrix(0.9397 0 0 1 324.3594 1183.8232)" font-family="'Helvetica-Bold'" font-size="12.4401px">Rutland County</text>
+		<text transform="matrix(0.9397 0 0 1 424.7012 1148.5762)" font-family="'Helvetica-Bold'" font-size="12.4401px">W</text>
+		<text transform="matrix(0.9397 0 0 1 435.6318 1148.5762)" font-family="'Helvetica-Bold'" font-size="12.4401px">i</text>
+		<text transform="matrix(0.9397 0 0 1 438.8799 1148.5762)" font-family="'Helvetica-Bold'" font-size="12.4401px">n</text>
+		<text transform="matrix(0.9397 0 0 1 446.0205 1148.5762)" font-family="'Helvetica-Bold'" font-size="12.4401px">d</text>
+		<text transform="matrix(0.9397 0 0 1 453.1611 1148.5762)" font-family="'Helvetica-Bold'" font-size="12.4401px">s</text>
+		<text transform="matrix(0.9397 0 0 1 459.6631 1148.5762)" font-family="'Helvetica-Bold'" font-size="12.4401px">o</text>
+		<text transform="matrix(0.9397 0 0 1 466.8037 1148.5762)" font-family="'Helvetica-Bold'" font-size="12.4401px">r</text>
+		<text transform="matrix(0.9397 0 0 1 471.3535 1148.5762)" font-family="'Helvetica-Bold'" font-size="12.4401px"> </text>
+		<text transform="matrix(0.9397 0 0 1 474.6006 1148.5762)" font-family="'Helvetica-Bold'" font-size="12.4401px">C</text>
+		<text transform="matrix(0.9397 0 0 1 483.043 1148.5762)" font-family="'Helvetica-Bold'" font-size="12.4401px">o</text>
+		<text transform="matrix(0.9397 0 0 1 490.1836 1148.5762)" font-family="'Helvetica-Bold'" font-size="12.4401px">u</text>
+		<text transform="matrix(0.9397 0 0 1 497.3252 1148.5762)" font-family="'Helvetica-Bold'" font-size="12.4401px">n</text>
+		<text transform="matrix(0.9397 0 0 1 504.4658 1148.5762)" font-family="'Helvetica-Bold'" font-size="12.4401px">t</text>
+		<text transform="matrix(0.9397 0 0 1 508.3584 1148.5762)" font-family="'Helvetica-Bold'" font-size="12.4401px">y</text>
+		<text transform="matrix(0.9397 0 0 1 298.3418 1309.5674)" font-family="'Helvetica-Bold'" font-size="12.4401px">Bennington County</text>
+		<text transform="matrix(0.9397 0 0 1 379.8945 1352.9961)" font-family="'Helvetica-Bold'" font-size="12.4401px">W</text>
+		<text transform="matrix(0.9397 0 0 1 390.8252 1352.9961)" font-family="'Helvetica-Bold'" font-size="12.4401px">i</text>
+		<text transform="matrix(0.9397 0 0 1 394.0732 1352.9961)" font-family="'Helvetica-Bold'" font-size="12.4401px">n</text>
+		<text transform="matrix(0.9397 0 0 1 401.2139 1352.9961)" font-family="'Helvetica-Bold'" font-size="12.4401px">d</text>
+		<text transform="matrix(0.9397 0 0 1 408.3545 1352.9961)" font-family="'Helvetica-Bold'" font-size="12.4401px">h</text>
+		<text transform="matrix(0.9397 0 0 1 415.4961 1352.9961)" font-family="'Helvetica-Bold'" font-size="12.4401px">a</text>
+		<text transform="matrix(0.9397 0 0 1 421.9971 1352.9961)" font-family="'Helvetica-Bold'" font-size="12.4401px">m</text>
+		<text transform="matrix(0.9397 0 0 1 432.3916 1352.9961)" font-family="'Helvetica-Bold'" font-size="12.4401px"> </text>
+		<text transform="matrix(0.9397 0 0 1 435.6396 1352.9961)" font-family="'Helvetica-Bold'" font-size="12.4401px">C</text>
+		<text transform="matrix(0.9397 0 0 1 444.082 1352.9961)" font-family="'Helvetica-Bold'" font-size="12.4401px">o</text>
+		<text transform="matrix(0.9397 0 0 1 451.2227 1352.9961)" font-family="'Helvetica-Bold'" font-size="12.4401px">u</text>
+		<text transform="matrix(0.9397 0 0 1 458.3633 1352.9961)" font-family="'Helvetica-Bold'" font-size="12.4401px">n</text>
+		<text transform="matrix(0.9397 0 0 1 465.5039 1352.9961)" font-family="'Helvetica-Bold'" font-size="12.4401px">t</text>
+		<text transform="matrix(0.9397 0 0 1 469.3975 1352.9961)" font-family="'Helvetica-Bold'" font-size="12.4401px">y</text>
+	</g>
+	<g id="homeless" data-name="homeless">
+		<text transform="matrix(0.9397 0 0 1 301.6621 877.9248)" font-family="'Helvetica'" font-size="12.4401px">1</text>
+		<text transform="matrix(0.9397 0 0 1 388.2168 850.8555)" font-family="'Helvetica'" font-size="12.4401px">162</text>
+		<text transform="matrix(0.9397 0 0 1 351.5625 1216.6396)" font-family="'Helvetica'" font-size="12.4401px">374</text>
+		<text transform="matrix(0.9397 0 0 1 456.8965 1181.7871)" font-family="'Helvetica'" font-size="12.4401px">139</text>
+		<text transform="matrix(0.9397 0 0 1 333.1777 1344.126)" font-family="'Helvetica'" font-size="12.4401px">278</text>
+		<text transform="matrix(0.9785 0 0 1 419.7886 1379.9707)" font-family="'Helvetica'" font-size="10.4286px">404</text>
+		<text transform="matrix(0.9397 0 0 1 484.1738 1093.6641)" font-family="'Helvetica'" font-size="12.4401px">38</text>
+		<text transform="matrix(0.9397 0 0 1 322.4609 1077.0781)" font-family="'Helvetica'" font-size="12.4401px">97</text>
+		<text transform="matrix(0.9397 0 0 1 439.3613 1019.7842)" font-family="'Helvetica'" font-size="12.4401px">389</text>
+		<text transform="matrix(0.9397 0 0 1 341.9746 968.5332)" font-family="'Helvetica'" font-size="12.4401px">668</text>
+		<text transform="matrix(0.9397 0 0 1 428.6758 930.1768)" font-family="'Helvetica'" font-size="12.4401px">57</text>
+		<text transform="matrix(0.9397 0 0 1 538.7598 958.1689)" font-family="'Helvetica'" font-size="12.4401px">139</text>
+		<text transform="matrix(0.9397 0 0 1 623.5137 897.0049)" font-family="'Helvetica'" font-size="12.4401px">1</text>
+		<text transform="matrix(0.9397 0 0 1 518.4355 865.8086)" font-family="'Helvetica'" font-size="12.4401px">33</text>
+	</g>
+	<g id="arrow-4" data-name="arrow-4">
+		<path fill="none" stroke="#C1272D" stroke-width="2" stroke-miterlimit="10" d="M359.815,192.236
+			c-3.315,11.627-98.089-11.144-131.01-27.718"/>
+		<g>
+			<path fill="#C1272D" d="M231.78,166.065l-1.056,7.602l-0.267-0.027l-5.599-10.051c-2.368-2.99-4.736-5.98-7.104-8.971
+				c3.404,1.721,6.808,3.441,10.213,5.161l10.969,3.47l0.103,0.228L231.78,166.065z"/>
+		</g>
+	</g>
+	
+		<ellipse id="circe-4" data-name="circe-4" fill="none" stroke="#C1272D" stroke-width="2" stroke-miterlimit="10" cx="417.136" cy="190.598" rx="45.017" ry="9.105"/>
+	
+		<ellipse id="circle-3" data-name="circle-3" fill="none" stroke="#C1272D" stroke-width="2" stroke-miterlimit="10" cx="417.136" cy="209.878" rx="45.017" ry="9.105"/>
+	<g id="arrow-3" data-name="arrow-3">
+		<path fill="none" stroke="#C1272D" stroke-width="2" stroke-miterlimit="10" d="M232.529,260.831
+			c29.008-25.401,127.292-59.612,135.14-40.791"/>
+		<g>
+			<path fill="#C1272D" d="M235.27,258.268l-3.899-7.479l-0.267,0.126l-2.086,12.47c-1.348,3.969-2.695,7.938-4.042,11.908
+				c2.889-3.037,5.777-6.075,8.667-9.111l10.073-7.64l0.022-0.274L235.27,258.268z"/>
+		</g>
+	</g>
+	<g id="income" data-name="income">
+		<text transform="matrix(0.9397 0 0 1 285.9805 857.4717)" font-family="'Helvetica'" font-size="12.4401px">$81,667</text>
+		<text transform="matrix(0.9397 0 0 1 376.2695 833.7852)" font-family="'Helvetica'" font-size="12.4401px">$65,314</text>
+		<text transform="matrix(0.9397 0 0 1 502.7949 849.0303)" font-family="'Helvetica'" font-size="12.4401px">$54,390</text>
+		<text transform="matrix(0.9397 0 0 1 605.0957 880.6016)" font-family="'Helvetica'" font-size="12.4401px">$47,035</text>
+		<text transform="matrix(0.9397 0 0 1 415.5703 912.585)" font-family="'Helvetica'" font-size="12.4401px">$64,179</text>
+		<text transform="matrix(0.9397 0 0 1 527.2812 941.54)" font-family="'Helvetica'" font-size="12.4401px">$52,481</text>
+		<text transform="matrix(0.9397 0 0 1 427.9766 1002.0918)" font-family="'Helvetica'" font-size="12.4401px">$64,862</text>
+		<text transform="matrix(0.9397 0 0 1 310.4551 1061.71)" font-family="'Helvetica'" font-size="12.4401px">$70,262</text>
+		<text transform="matrix(0.9397 0 0 1 469.3105 1080.3252)" font-family="'Helvetica'" font-size="12.4401px">$62,737</text>
+		<text transform="matrix(0.9397 0 0 1 340.9199 1200.4111)" font-family="'Helvetica'" font-size="12.4401px">$57,176</text>
+		<text transform="matrix(0.9397 0 0 1 446.1328 1166.1992)" font-family="'Helvetica'" font-size="12.4401px">$61,503</text>
+		<text transform="matrix(0.9397 0 0 1 325.6191 1328.2266)" font-family="'Helvetica'" font-size="12.4401px">$58,200</text>
+		<text transform="matrix(0.9785 0 0 1 412.0967 1367.4199)" font-family="'Helvetica'" font-size="10.4286px">$54,188</text>
+	</g>
+</g>
+<style>
+#g-vermont-map-NEW-Artboard_9-interactions-img rect, #g-vermont-map-NEW-Artboard_9-interactions-img circle, #g-vermont-map-NEW-Artboard_9-interactions-img path, #g-vermont-map-NEW-Artboard_9-interactions-img line, #g-vermont-map-NEW-Artboard_9-interactions-img polyline, #g-vermont-map-NEW-Artboard_9-interactions-img polygon { vector-effect: non-scaling-stroke; }
+</style>
+</svg>
+
+		<div id="g-ai0-1" class="g-interactions g-aiAbs g-aiPointText" style="top:7.73%;margin-top:-9.6px;left:43.6866%;width:124px;">
+			<p class="g-pstyle0">Franklin County</p>
+		</div>
+		<div id="g-ai0-2" class="g-interactions g-aiAbs g-aiPointText" style="top:9.6758%;margin-top:-9.6px;left:58.8611%;width:121px;">
+			<p class="g-pstyle0">Orleans County</p>
+		</div>
+		<div id="g-ai0-3" class="g-interactions g-aiAbs g-aiPointText" style="top:10.0917%;margin-top:-9.6px;left:45.7108%;width:70px;">
+			<p class="g-pstyle1">$65,314</p>
+		</div>
+		<div id="g-ai0-4" class="g-interactions g-aiAbs g-aiPointText" style="top:10.7877%;margin-top:-9.6px;left:32.8126%;width:133px;">
+			<p class="g-pstyle0">Grandlsle County</p>
+		</div>
+		<div id="g-ai0-5" class="g-interactions g-aiAbs g-aiPointText" style="top:12.3154%;margin-top:-9.6px;left:60.5782%;width:70px;">
+			<p class="g-pstyle1">$54,390</p>
+		</div>
+		<div id="g-ai0-6" class="g-interactions g-aiAbs g-aiPointText" style="top:12.5934%;margin-top:-9.6px;left:47.1148%;width:44px;">
+			<p class="g-pstyle1">162</p>
+		</div>
+		<div id="g-ai0-7" class="g-interactions g-aiAbs g-aiPointText" style="top:13.5663%;margin-top:-9.6px;left:35.1011%;width:70px;">
+			<p class="g-pstyle1">$81,667</p>
+		</div>
+		<div id="g-ai0-8" class="g-interactions g-aiAbs g-aiPointText" style="top:14.2623%;margin-top:-9.6px;left:70.8819%;width:110px;">
+			<p class="g-pstyle0">Essex County</p>
+		</div>
+		<div id="g-ai0-9" class="g-interactions g-aiAbs g-aiPointText" style="top:14.6782%;margin-top:-9.6px;left:62.4159%;width:37px;">
+			<p class="g-pstyle1">33</p>
+		</div>
+		<div id="g-ai0-10" class="g-interactions g-aiAbs g-aiPointText" style="top:16.485%;margin-top:-9.6px;left:36.9438%;width:29px;">
+			<p class="g-pstyle1">1</p>
+		</div>
+		<div id="g-ai0-11" class="g-interactions g-aiAbs g-aiPointText" style="top:16.902%;margin-top:-9.6px;left:72.599%;width:70px;">
+			<p class="g-pstyle1">$47,035</p>
+		</div>
+		<div id="text-4" class="g-interactions g-aiAbs g-aiPointText" style="top:18.6173%;margin-top:-21px;left:16.7389%;margin-left:-131.5px;width:263px;">
+			<p class="g-pstyle2">The second-highest county of </p>
+			<p class="g-pstyle2">median household income in Vermont</p>
+		</div>
+		<div id="g-ai0-13" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:18.1417%;margin-top:-7.5px;left:53.6898%;width:61px;">
+			<p class="g-pstyle3">	</p>
+		</div>
+		<div id="g-ai0-14" class="g-interactions g-aiAbs g-aiPointText" style="top:18.7099%;margin-top:-9.6px;left:47.9889%;width:122px;">
+			<p class="g-pstyle0">Lamolle County</p>
+		</div>
+		<div id="g-ai0-15" class="g-interactions g-aiAbs g-aiPointText" style="top:19.2647%;margin-top:-9.6px;left:74.7633%;width:29px;">
+			<p class="g-pstyle1">1</p>
+		</div>
+		<div id="g-ai0-16" class="g-interactions g-aiAbs g-aiPointText" style="top:21.4885%;margin-top:-9.6px;left:50.3288%;width:70px;">
+			<p class="g-pstyle1">$64,179</p>
+		</div>
+		<div id="g-ai0-17" class="g-interactions g-aiAbs g-aiPointText" style="top:23.0184%;margin-top:-9.6px;left:59.3345%;width:135px;">
+			<p class="g-pstyle0">Caledonia County</p>
+		</div>
+		<div id="g-ai0-18" class="g-interactions g-aiAbs g-aiPointText" style="top:23.9913%;margin-top:-9.6px;left:37.6832%;width:141px;">
+			<p class="g-pstyle0">Chittenden County</p>
+		</div>
+		<div id="g-ai0-19" class="g-interactions g-aiAbs g-aiPointText" style="top:23.9902%;margin-top:-9.6px;left:51.8688%;width:37px;">
+			<p class="g-pstyle1">57</p>
+		</div>
+		<div id="g-ai0-20" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:24.813%;margin-top:-7.5px;left:44.5642%;width:61px;">
+			<p class="g-pstyle3">	</p>
+		</div>
+		<div id="g-ai0-21" class="g-interactions g-aiAbs g-aiPointText" style="top:25.658%;margin-top:-9.6px;left:63.4555%;width:70px;">
+			<p class="g-pstyle1">$52,481</p>
+		</div>
+		<div id="g-ai0-22" class="g-interactions g-aiAbs g-aiPointText" style="top:26.7699%;margin-top:-9.6px;left:40.6596%;width:70px;">
+			<p class="g-pstyle1">$76,316</p>
+		</div>
+		<div id="g-ai0-23" class="g-interactions g-aiAbs g-aiPointText" style="top:28.0208%;margin-top:-9.6px;left:64.8042%;width:44px;">
+			<p class="g-pstyle1">139</p>
+		</div>
+		<div id="g-ai0-24" class="g-interactions g-aiAbs g-aiPointText" style="top:29.4106%;margin-top:-9.6px;left:41.681%;width:44px;">
+			<p class="g-pstyle1">668</p>
+		</div>
+		<div id="g-ai0-25" class="g-interactions g-aiAbs g-aiPointText" style="top:31.9135%;margin-top:-9.6px;left:48.8104%;width:147px;">
+			<p class="g-pstyle0">Washington County</p>
+		</div>
+		<div id="g-ai0-26" class="g-interactions g-aiAbs g-aiPointText" style="top:34.2751%;margin-top:-9.6px;left:51.7868%;width:70px;">
+			<p class="g-pstyle1">$64,862</p>
+		</div>
+		<div id="g-ai0-27" class="g-interactions g-aiAbs g-aiPointText" style="top:36.7769%;margin-top:-9.6px;left:53.1245%;width:44px;">
+			<p class="g-pstyle1">389</p>
+		</div>
+		<div id="text-3" class="g-interactions g-aiAbs g-aiPointText" style="top:41.2082%;margin-top:-19.5px;left:18.1069%;margin-left:-127.5px;width:255px;">
+			<p class="g-pstyle4">The county with the highest number </p>
+			<p class="g-pstyle4">of homeless people in Vermont</p>
+		</div>
+		<div id="g-ai0-29" class="g-interactions g-aiAbs g-aiPointText" style="top:40.5306%;margin-top:-9.6px;left:35.8021%;width:125px;">
+			<p class="g-pstyle0">Addison County</p>
+		</div>
+		<div id="g-ai0-30" class="g-interactions g-aiAbs g-aiPointText" style="top:42.8933%;margin-top:-9.6px;left:55.0409%;width:118px;">
+			<p class="g-pstyle0">Orange County</p>
+		</div>
+		<div id="g-ai0-31" class="g-interactions g-aiAbs g-aiPointText" style="top:42.8922%;margin-top:-9.6px;left:37.9769%;width:70px;">
+			<p class="g-pstyle1">$70,262</p>
+		</div>
+		<div id="g-ai0-32" class="g-interactions g-aiAbs g-aiPointText" style="top:45.116%;margin-top:-9.6px;left:39.3879%;width:37px;">
+			<p class="g-pstyle1">97</p>
+		</div>
+		<div id="g-ai0-33" class="g-interactions g-aiAbs g-aiPointText" style="top:45.533%;margin-top:-9.6px;left:56.6434%;width:70px;">
+			<p class="g-pstyle1">$62,737</p>
+		</div>
+		<div id="g-ai0-34" class="g-interactions g-aiAbs g-aiPointText" style="top:47.4788%;margin-top:-9.6px;left:58.3902%;width:37px;">
+			<p class="g-pstyle1">38</p>
+		</div>
+		<div id="g-ai0-35" class="g-interactions g-aiAbs g-aiPointText" style="top:54.4371%;margin-top:-11.7px;left:67.8569%;width:182px;">
+			<p class="g-pstyle5">Median Household Income</p>
+		</div>
+		<div id="g-ai0-36" class="g-interactions g-aiAbs g-aiPointText" style="top:55.402%;margin-top:-9.6px;left:51.4016%;width:125px;">
+			<p class="g-pstyle0">Windsor County</p>
+		</div>
+		<div id="g-ai0-37" class="g-interactions g-aiAbs g-aiPointText" style="top:57.9027%;margin-top:-9.6px;left:53.92%;width:70px;">
+			<p class="g-pstyle1">$61,503</p>
+		</div>
+		<div id="g-ai0-38" class="g-interactions g-aiAbs g-aiPointText" style="top:59.3216%;margin-top:-10.8px;left:69.9427%;width:78px;">
+			<p class="g-pstyle6">Vermont</p>
+		</div>
+		<div id="g-ai0-39" class="g-interactions g-aiAbs g-aiPointText" style="top:59.4606%;margin-top:-10.8px;left:81.3047%;width:77px;">
+			<p class="g-pstyle6">$63,447</p>
+		</div>
+		<div id="g-ai0-40" class="g-interactions g-aiAbs g-aiPointText" style="top:60.1265%;margin-top:-9.6px;left:55.1849%;width:44px;">
+			<p class="g-pstyle1">139</p>
+		</div>
+		<div id="g-ai0-41" class="g-interactions g-aiAbs g-aiPointText" style="top:60.4055%;margin-top:-9.6px;left:39.611%;width:121px;">
+			<p class="g-pstyle0">Rutland County</p>
+		</div>
+		<div id="g-ai0-42" class="g-interactions g-aiAbs g-aiPointText" style="top:62.7672%;margin-top:-9.6px;left:41.5571%;width:70px;">
+			<p class="g-pstyle1">$57,176</p>
+		</div>
+		<div id="g-ai0-43" class="g-interactions g-aiAbs g-aiPointText" style="top:65.1299%;margin-top:-9.6px;left:42.8074%;width:44px;">
+			<p class="g-pstyle1">374</p>
+		</div>
+		<div id="g-ai0-44" class="g-interactions g-aiAbs g-aiPointText" style="top:66.9367%;margin-top:-9.6px;left:76.7873%;width:67px;">
+			<p class="g-pstyle1">Legend</p>
+		</div>
+		<div id="g-ai0-45" class="g-interactions g-aiAbs g-aiPointText" style="top:69.9143%;margin-top:-9px;left:87.8004%;width:58px;">
+			<p class="g-pstyle3">81,667</p>
+		</div>
+		<div id="g-ai0-46" class="g-interactions g-aiAbs g-aiPointText" style="top:70.1923%;margin-top:-9px;left:66.8572%;width:58px;">
+			<p class="g-pstyle3">47,035</p>
+		</div>
+		<div id="g-ai0-47" class="g-interactions g-aiAbs g-aiPointText" style="top:78.4736%;margin-top:-9.6px;left:36.5537%;width:146px;">
+			<p class="g-pstyle0">Bennington County</p>
+		</div>
+		<div id="g-ai0-48" class="g-interactions g-aiAbs g-aiPointText" style="top:78.7596%;margin-top:-11.7px;left:68.071%;width:148px;">
+			<p class="g-pstyle5">Number of Homeless</p>
+		</div>
+		<div id="g-ai0-49" class="g-interactions g-aiAbs g-aiPointText" style="top:81.1133%;margin-top:-9.6px;left:39.7589%;width:70px;">
+			<p class="g-pstyle1">$58,200</p>
+		</div>
+		<div id="g-ai0-50" class="g-interactions g-aiAbs g-aiPointText" style="top:83.476%;margin-top:-9.6px;left:40.6471%;width:44px;">
+			<p class="g-pstyle1">278</p>
+		</div>
+		<div id="g-ai0-51" class="g-interactions g-aiAbs g-aiPointText" style="top:83.922%;margin-top:-10.8px;left:69.9926%;width:78px;">
+			<p class="g-pstyle6">Vermont</p>
+		</div>
+		<div id="g-ai0-52" class="g-interactions g-aiAbs g-aiPointText" style="top:83.922%;margin-top:-10.8px;left:82.7283%;width:60px;">
+			<p class="g-pstyle6">2,780</p>
+		</div>
+		<div id="g-ai0-53" class="g-interactions g-aiAbs g-aiPointText" style="top:84.728%;margin-top:-9.6px;left:46.1366%;width:132px;">
+			<p class="g-pstyle0">Windham County</p>
+		</div>
+		<div id="g-ai0-54" class="g-interactions g-aiAbs g-aiPointText" style="top:86.9506%;margin-top:-9.6px;left:48.884%;width:70px;">
+			<p class="g-pstyle1">$54,188</p>
+		</div>
+		<div id="g-ai0-55" class="g-interactions g-aiAbs g-aiPointText" style="top:89.0354%;margin-top:-9.6px;left:49.9193%;width:44px;">
+			<p class="g-pstyle1">404</p>
+		</div>
+	</div>
+
+	<!-- Artboard: Artboard_11 -->
+	<div id="g-vermont-map-NEW-Artboard_11" class="g-artboard" style="max-width: 802px;max-height: 690px" data-aspect-ratio="1.163" data-min-width="0" data-max-width="970">
+<div style="padding: 0 0 85.9726% 0;"></div>
+		<img id="g-vermont-map-NEW-Artboard_11-img" class="g-vermont-map-NEW-Artboard_11-img g-aiImg" alt="" src="./images/svg/ai2html-output/vermont-map-NEW-Artboard_11.png"/>
+<!-- Generator: Adobe Illustrator 27.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg class="g-vermont-map-NEW-Artboard_11-interactions-img g-aiImg" version="1.2" baseProfile="tiny" id="g-vermont-map-NEW-Artboard_11-interactions-img" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	 x="0px" y="0px" viewBox="0 0 802 689.5" overflow="visible" xml:space="preserve">
+<g>
+	<g id="homeless-box-2" data-name="homeless-box">
+		<text transform="matrix(1.0892 0 0 1 678.6279 -160.6006)" font-family="'Helvetica'" font-size="13.9127px">V</text>
+		<text transform="matrix(1.0892 0 0 1 687.9072 -160.6006)" font-family="'Helvetica'" font-size="13.9127px">e</text>
+		<text transform="matrix(1.0892 0 0 1 696.335 -160.6006)" font-family="'Helvetica'" font-size="13.9127px">r</text>
+		<text transform="matrix(1.0892 0 0 1 701.3809 -160.6006)" font-family="'Helvetica'" font-size="13.9127px">m</text>
+		<text transform="matrix(1.0892 0 0 1 714.0049 -160.6006)" font-family="'Helvetica'" font-size="13.9127px">o</text>
+		<text transform="matrix(1.0892 0 0 1 722.4326 -160.6006)" font-family="'Helvetica'" font-size="13.9127px">n</text>
+		<text transform="matrix(1.0892 0 0 1 730.8604 -160.6006)" font-family="'Helvetica'" font-size="13.9127px">t</text>
+		<text transform="matrix(1.0892 0 0 1 802.292 -160.2393)" font-family="'Helvetica'" font-size="13.9127px">2,780</text>
+		<text transform="matrix(0.8325 0 0 1 659.9697 -197.5625)" font-family="'Helvetica-Bold'" font-size="15.178px">Number of Homeless</text>
+		<rect x="660.671" y="-188.644" fill="none" stroke="#999999" stroke-miterlimit="10" width="211.19" height="47.131"/>
+		<rect x="566.175" y="553.653" fill="none" stroke="#999999" stroke-miterlimit="10" width="185.094" height="45.614"/>
+	</g>
+	<g id="income-box-2" data-name="income-box">
+		<text transform="matrix(0.8325 0 0 1 657.8906 -372.1484)" font-family="'Helvetica-Bold'" font-size="15.178px">Median Household Income</text>
+		<text transform="matrix(1.0377 0 0 1 744.6045 -282.8545)" font-family="'Helvetica'" font-size="12.8539px">Legend</text>
+		<text transform="matrix(0.9918 0 0 1 648.1836 -259.2168)" font-family="'Helvetica'" font-size="11.9941px">47,035</text>
+		<text transform="matrix(0.9918 0 0 1 851.542 -261.6025)" font-family="'Helvetica'" font-size="11.9941px">81,667</text>
+		<text transform="matrix(1.0892 0 0 1 678.1436 -337.2617)" font-family="'Helvetica'" font-size="13.9127px">V</text>
+		<text transform="matrix(1.0892 0 0 1 687.4229 -337.2617)" font-family="'Helvetica'" font-size="13.9127px">e</text>
+		<text transform="matrix(1.0892 0 0 1 695.8506 -337.2617)" font-family="'Helvetica'" font-size="13.9127px">r</text>
+		<text transform="matrix(1.0892 0 0 1 700.8965 -337.2617)" font-family="'Helvetica'" font-size="13.9127px">m</text>
+		<text transform="matrix(1.0892 0 0 1 713.5205 -337.2617)" font-family="'Helvetica'" font-size="13.9127px">o</text>
+		<text transform="matrix(1.0892 0 0 1 721.9482 -337.2617)" font-family="'Helvetica'" font-size="13.9127px">n</text>
+		<text transform="matrix(1.0892 0 0 1 730.376 -337.2617)" font-family="'Helvetica'" font-size="13.9127px">t</text>
+		<text transform="matrix(1.0892 0 0 1 788.4688 -336.8994)" font-family="'Helvetica'" font-size="13.9127px">$63,447</text>
+		<rect x="658.448" y="-365.385" fill="none" stroke="#999999" stroke-miterlimit="10" width="211.19" height="47.131"/>
+		<rect x="564.227" y="382.601" fill="none" stroke="#999999" stroke-miterlimit="10" width="185.094" height="45.614"/>
+	</g>
+	<g id="county-names-2" data-name="county-names">
+		<text transform="matrix(1.0377 0 0 1 317.6104 -686.5093)" font-family="'Helvetica-Bold'" font-size="12.8539px">Grandlsle County</text>
+		<text transform="matrix(1.0377 0 0 1 423.1968 -709.0034)" font-family="'Helvetica-Bold'" font-size="12.8539px">Franklin County</text>
+		<text transform="matrix(1.0377 0 0 1 570.541 -695.2329)" font-family="'Helvetica-Bold'" font-size="12.8539px">Orleans County</text>
+		<text transform="matrix(1.0377 0 0 1 687.2637 -661.54)" font-family="'Helvetica-Bold'" font-size="12.8539px">Essex County</text>
+		<text transform="matrix(1.0377 0 0 1 364.9048 -592.1572)" font-family="'Helvetica-Bold'" font-size="12.8539px">Chittenden County</text>
+		<text transform="matrix(1.0377 0 0 1 464.9722 -629.5034)" font-family="'Helvetica-Bold'" font-size="12.8539px">Lamolle County</text>
+		<text transform="matrix(1.0377 0 0 1 575.1377 -598.5737)" font-family="'Helvetica-Bold'" font-size="12.8539px">Caledonia County</text>
+		<text transform="matrix(1.0377 0 0 1 472.9497 -534.9404)" font-family="'Helvetica-Bold'" font-size="12.8539px">W</text>
+		<text transform="matrix(1.0377 0 0 1 485.0508 -534.9404)" font-family="'Helvetica-Bold'" font-size="12.8539px">a</text>
+		<text transform="matrix(1.0377 0 0 1 492.4688 -534.9404)" font-family="'Helvetica-Bold'" font-size="12.8539px">s</text>
+		<text transform="matrix(1.0377 0 0 1 499.8867 -534.9404)" font-family="'Helvetica-Bold'" font-size="12.8539px">h</text>
+		<text transform="matrix(1.0377 0 0 1 508.0342 -534.9404)" font-family="'Helvetica-Bold'" font-size="12.8539px">i</text>
+		<text transform="matrix(1.0377 0 0 1 511.7402 -534.9404)" font-family="'Helvetica-Bold'" font-size="12.8539px">n</text>
+		<text transform="matrix(1.0377 0 0 1 519.8877 -534.9404)" font-family="'Helvetica-Bold'" font-size="12.8539px">g</text>
+		<text transform="matrix(1.0377 0 0 1 528.0352 -534.9404)" font-family="'Helvetica-Bold'" font-size="12.8539px">t</text>
+		<text transform="matrix(1.0377 0 0 1 532.4775 -534.9404)" font-family="'Helvetica-Bold'" font-size="12.8539px">o</text>
+		<text transform="matrix(1.0377 0 0 1 540.625 -534.9404)" font-family="'Helvetica-Bold'" font-size="12.8539px">n</text>
+		<text transform="matrix(1.0377 0 0 1 548.7725 -534.9404)" font-family="'Helvetica-Bold'" font-size="12.8539px"> </text>
+		<text transform="matrix(1.0377 0 0 1 552.4785 -534.9404)" font-family="'Helvetica-Bold'" font-size="12.8539px">C</text>
+		<text transform="matrix(1.0377 0 0 1 562.1104 -534.9404)" font-family="'Helvetica-Bold'" font-size="12.8539px">o</text>
+		<text transform="matrix(1.0377 0 0 1 570.2578 -534.9404)" font-family="'Helvetica-Bold'" font-size="12.8539px">u</text>
+		<text transform="matrix(1.0377 0 0 1 578.4062 -534.9404)" font-family="'Helvetica-Bold'" font-size="12.8539px">n</text>
+		<text transform="matrix(1.0377 0 0 1 586.5537 -534.9404)" font-family="'Helvetica-Bold'" font-size="12.8539px">t</text>
+		<text transform="matrix(1.0377 0 0 1 590.9951 -534.9404)" font-family="'Helvetica-Bold'" font-size="12.8539px">y</text>
+		<text transform="matrix(1.0377 0 0 1 346.6382 -473.3374)" font-family="'Helvetica-Bold'" font-size="12.8539px">Addison County</text>
+		<text transform="matrix(1.0377 0 0 1 533.4473 -456.2456)" font-family="'Helvetica-Bold'" font-size="12.8539px">Orange County</text>
+		<text transform="matrix(1.0377 0 0 1 383.623 -330.0234)" font-family="'Helvetica-Bold'" font-size="12.8539px">Rutland County</text>
+		<text transform="matrix(1.0377 0 0 1 498.1094 -366.4424)" font-family="'Helvetica-Bold'" font-size="12.8539px">W</text>
+		<text transform="matrix(1.0377 0 0 1 510.5811 -366.4424)" font-family="'Helvetica-Bold'" font-size="12.8539px">i</text>
+		<text transform="matrix(1.0377 0 0 1 514.2871 -366.4424)" font-family="'Helvetica-Bold'" font-size="12.8539px">n</text>
+		<text transform="matrix(1.0377 0 0 1 522.4346 -366.4424)" font-family="'Helvetica-Bold'" font-size="12.8539px">d</text>
+		<text transform="matrix(1.0377 0 0 1 530.582 -366.4424)" font-family="'Helvetica-Bold'" font-size="12.8539px">s</text>
+		<text transform="matrix(1.0377 0 0 1 538.001 -366.4424)" font-family="'Helvetica-Bold'" font-size="12.8539px">o</text>
+		<text transform="matrix(1.0377 0 0 1 546.1484 -366.4424)" font-family="'Helvetica-Bold'" font-size="12.8539px">r</text>
+		<text transform="matrix(1.0377 0 0 1 551.3389 -366.4424)" font-family="'Helvetica-Bold'" font-size="12.8539px"> </text>
+		<text transform="matrix(1.0377 0 0 1 555.0449 -366.4424)" font-family="'Helvetica-Bold'" font-size="12.8539px">C</text>
+		<text transform="matrix(1.0377 0 0 1 564.6777 -366.4424)" font-family="'Helvetica-Bold'" font-size="12.8539px">o</text>
+		<text transform="matrix(1.0377 0 0 1 572.8252 -366.4424)" font-family="'Helvetica-Bold'" font-size="12.8539px">u</text>
+		<text transform="matrix(1.0377 0 0 1 580.9727 -366.4424)" font-family="'Helvetica-Bold'" font-size="12.8539px">n</text>
+		<text transform="matrix(1.0377 0 0 1 589.1201 -366.4424)" font-family="'Helvetica-Bold'" font-size="12.8539px">t</text>
+		<text transform="matrix(1.0377 0 0 1 593.5615 -366.4424)" font-family="'Helvetica-Bold'" font-size="12.8539px">y</text>
+		<text transform="matrix(1.0377 0 0 1 353.9365 -200.0996)" font-family="'Helvetica-Bold'" font-size="12.8539px">Bennington County</text>
+		<text transform="matrix(1.0377 0 0 1 446.9858 -155.2246)" font-family="'Helvetica-Bold'" font-size="12.8539px">W</text>
+		<text transform="matrix(1.0377 0 0 1 459.458 -155.2246)" font-family="'Helvetica-Bold'" font-size="12.8539px">i</text>
+		<text transform="matrix(1.0377 0 0 1 463.1636 -155.2246)" font-family="'Helvetica-Bold'" font-size="12.8539px">n</text>
+		<text transform="matrix(1.0377 0 0 1 471.3115 -155.2246)" font-family="'Helvetica-Bold'" font-size="12.8539px">d</text>
+		<text transform="matrix(1.0377 0 0 1 479.459 -155.2246)" font-family="'Helvetica-Bold'" font-size="12.8539px">h</text>
+		<text transform="matrix(1.0377 0 0 1 487.6064 -155.2246)" font-family="'Helvetica-Bold'" font-size="12.8539px">a</text>
+		<text transform="matrix(1.0377 0 0 1 495.0244 -155.2246)" font-family="'Helvetica-Bold'" font-size="12.8539px">m</text>
+		<text transform="matrix(1.0377 0 0 1 506.8848 -155.2246)" font-family="'Helvetica-Bold'" font-size="12.8539px"> </text>
+		<text transform="matrix(1.0377 0 0 1 510.5908 -155.2246)" font-family="'Helvetica-Bold'" font-size="12.8539px">C</text>
+		<text transform="matrix(1.0377 0 0 1 520.2227 -155.2246)" font-family="'Helvetica-Bold'" font-size="12.8539px">o</text>
+		<text transform="matrix(1.0377 0 0 1 528.3701 -155.2246)" font-family="'Helvetica-Bold'" font-size="12.8539px">u</text>
+		<text transform="matrix(1.0377 0 0 1 536.5176 -155.2246)" font-family="'Helvetica-Bold'" font-size="12.8539px">n</text>
+		<text transform="matrix(1.0377 0 0 1 544.666 -155.2246)" font-family="'Helvetica-Bold'" font-size="12.8539px">t</text>
+		<text transform="matrix(1.0377 0 0 1 549.1074 -155.2246)" font-family="'Helvetica-Bold'" font-size="12.8539px">y</text>
+	</g>
+	<g id="homeless-2" data-name="homeless">
+		<text transform="matrix(1.0377 0 0 1 357.7246 -646.0981)" font-family="'Helvetica'" font-size="12.8539px">1</text>
+		<text transform="matrix(1.0377 0 0 1 456.4839 -674.0664)" font-family="'Helvetica'" font-size="12.8539px">162</text>
+		<text transform="matrix(1.0377 0 0 1 414.6597 -296.1152)" font-family="'Helvetica'" font-size="12.8539px">374</text>
+		<text transform="matrix(1.0377 0 0 1 534.8457 -332.126)" font-family="'Helvetica'" font-size="12.8539px">139</text>
+		<text transform="matrix(1.0377 0 0 1 393.6831 -164.3906)" font-family="'Helvetica'" font-size="12.8539px">278</text>
+		<text transform="matrix(1.0377 0 0 1 483.7163 -123.6875)" font-family="'Helvetica'" font-size="12.8539px">404</text>
+		<text transform="matrix(1.0377 0 0 1 565.9688 -423.1812)" font-family="'Helvetica'" font-size="12.8539px">38</text>
+		<text transform="matrix(1.0377 0 0 1 381.4561 -440.3198)" font-family="'Helvetica'" font-size="12.8539px">97</text>
+		<text transform="matrix(1.0377 0 0 1 514.8389 -499.5186)" font-family="'Helvetica'" font-size="12.8539px">389</text>
+		<text transform="matrix(1.0377 0 0 1 403.7222 -552.4731)" font-family="'Helvetica'" font-size="12.8539px">668</text>
+		<text transform="matrix(1.0377 0 0 1 502.6465 -592.1064)" font-family="'Helvetica'" font-size="12.8539px">57</text>
+		<text transform="matrix(1.0377 0 0 1 628.249 -563.1846)" font-family="'Helvetica'" font-size="12.8539px">139</text>
+		<text transform="matrix(1.0377 0 0 1 724.9512 -626.3823)" font-family="'Helvetica'" font-size="12.8539px">1</text>
+		<text transform="matrix(1.0377 0 0 1 605.0586 -658.6157)" font-family="'Helvetica'" font-size="12.8539px">33</text>
+	</g>
+	<g id="arrow-2" data-name="arrow-2">
+		<path fill="none" stroke="#C1272D" stroke-width="2" stroke-miterlimit="10" d="M301.619,179.961
+			c-2.869,11.112-83.897-10.238-113.71-26.219"/>
+		<g>
+			<path fill="#C1272D" d="M190.844,155.351l-1.247,7.573l-0.267-0.033l-5.344-10.189c-2.292-3.049-4.584-6.098-6.875-9.147
+				c3.36,1.806,6.719,3.612,10.08,5.417l10.878,3.746l0.097,0.231L190.844,155.351z"/>
+		</g>
+	</g>
+	
+		<ellipse id="circle-2" data-name="circle-2" fill="none" stroke="#C1272D" stroke-width="2" stroke-miterlimit="10" cx="351.856" cy="178.375" rx="39.454" ry="8.812"/>
+	
+		<ellipse id="circle-1" data-name="circle-1" fill="none" stroke="#C1272D" stroke-width="2" stroke-miterlimit="10" cx="351.856" cy="197.035" rx="39.454" ry="8.812"/>
+	<g id="arrow-1" data-name="arrow-1">
+		<path fill="none" stroke="#C1272D" stroke-width="2" stroke-miterlimit="10" d="M190.699,245.741
+			c26.194-24.517,110.981-56.937,117.802-38.87"/>
+		<g>
+			<path fill="#C1272D" d="M193.36,243.099l-4.061-7.392l-0.264,0.132l-1.813,12.512c-1.26,3.998-2.521,7.995-3.781,11.993
+				c2.822-3.1,5.643-6.199,8.465-9.299l9.904-7.859l0.016-0.275L193.36,243.099z"/>
+		</g>
+	</g>
+	<g id="income-2" data-name="income">
+		<text transform="matrix(1.0377 0 0 1 339.832 -667.2285)" font-family="'Helvetica'" font-size="12.8539px">$81,667</text>
+		<text transform="matrix(1.0377 0 0 1 442.8521 -691.7031)" font-family="'Helvetica'" font-size="12.8539px">$65,314</text>
+		<text transform="matrix(1.0377 0 0 1 587.2139 -675.9517)" font-family="'Helvetica'" font-size="12.8539px">$54,390</text>
+		<text transform="matrix(1.0377 0 0 1 703.9365 -643.3301)" font-family="'Helvetica'" font-size="12.8539px">$47,035</text>
+		<text transform="matrix(1.0377 0 0 1 393.8042 -571.8057)" font-family="'Helvetica'" font-size="12.8539px">$76,316</text>
+		<text transform="matrix(1.0377 0 0 1 487.6924 -610.2842)" font-family="'Helvetica'" font-size="12.8539px">$64,179</text>
+		<text transform="matrix(1.0377 0 0 1 615.1533 -580.3652)" font-family="'Helvetica'" font-size="12.8539px">$52,481</text>
+		<text transform="matrix(1.0377 0 0 1 501.8496 -517.8018)" font-family="'Helvetica'" font-size="12.8539px">$64,862</text>
+		<text transform="matrix(1.0377 0 0 1 367.7563 -456.1997)" font-family="'Helvetica'" font-size="12.8539px">$70,262</text>
+		<text transform="matrix(1.0377 0 0 1 549.0078 -436.9644)" font-family="'Helvetica'" font-size="12.8539px">$62,737</text>
+		<text transform="matrix(1.0377 0 0 1 402.519 -312.8838)" font-family="'Helvetica'" font-size="12.8539px">$57,176</text>
+		<text transform="matrix(1.0377 0 0 1 522.5635 -348.2324)" font-family="'Helvetica'" font-size="12.8539px">$61,503</text>
+		<text transform="matrix(1.0377 0 0 1 385.0591 -180.8174)" font-family="'Helvetica'" font-size="12.8539px">$58,200</text>
+		<text transform="matrix(1.0377 0 0 1 473.6636 -139.1582)" font-family="'Helvetica'" font-size="12.8539px">$54,188</text>
+	</g>
+</g>
+<style>
+#g-vermont-map-NEW-Artboard_11-interactions-img rect, #g-vermont-map-NEW-Artboard_11-interactions-img circle, #g-vermont-map-NEW-Artboard_11-interactions-img path, #g-vermont-map-NEW-Artboard_11-interactions-img line, #g-vermont-map-NEW-Artboard_11-interactions-img polyline, #g-vermont-map-NEW-Artboard_11-interactions-img polygon { vector-effect: non-scaling-stroke; }
+</style>
+</svg>
+
+		<div id="g-ai1-1" class="g-interactions g-aiAbs g-aiPointText" style="top:6.9384%;margin-top:-9.8px;left:44.644%;width:111px;">
+			<p class="g-pstyle0">Franklin County</p>
+		</div>
+		<div id="g-ai1-2" class="g-interactions g-aiAbs g-aiPointText" style="top:8.8238%;margin-top:-9.8px;left:60.7458%;width:109px;">
+			<p class="g-pstyle0">Orleans County</p>
+		</div>
+		<div id="g-ai1-3" class="g-interactions g-aiAbs g-aiPointText" style="top:9.4028%;margin-top:-9.8px;left:46.7917%;width:64px;">
+			<p class="g-pstyle1">$65,314</p>
+		</div>
+		<div id="g-ai1-4" class="g-interactions g-aiAbs g-aiPointText" style="top:10.1291%;margin-top:-9.8px;left:33.1052%;width:119px;">
+			<p class="g-pstyle0">Grandlsle County</p>
+		</div>
+		<div id="g-ai1-5" class="g-interactions g-aiAbs g-aiPointText" style="top:11.5783%;margin-top:-9.8px;left:62.5679%;width:64px;">
+			<p class="g-pstyle1">$54,390</p>
+		</div>
+		<div id="g-ai1-6" class="g-interactions g-aiAbs g-aiPointText" style="top:11.8684%;margin-top:-9.8px;left:48.2814%;width:42px;">
+			<p class="g-pstyle1">162</p>
+		</div>
+		<div id="g-ai1-7" class="g-interactions g-aiAbs g-aiPointText" style="top:12.7386%;margin-top:-9.8px;left:35.5337%;width:64px;">
+			<p class="g-pstyle1">$81,667</p>
+		</div>
+		<div id="g-ai1-8" class="g-interactions g-aiAbs g-aiPointText" style="top:13.6099%;margin-top:-9.8px;left:73.5015%;width:99px;">
+			<p class="g-pstyle0">Essex County</p>
+		</div>
+		<div id="g-ai1-9" class="g-interactions g-aiAbs g-aiPointText" style="top:14.0439%;margin-top:-9.8px;left:64.5181%;width:35px;">
+			<p class="g-pstyle1">33</p>
+		</div>
+		<div id="g-ai1-10" class="g-interactions g-aiAbs g-aiPointText" style="top:15.7843%;margin-top:-9.8px;left:37.489%;width:29px;">
+			<p class="g-pstyle1">1</p>
+		</div>
+		<div id="g-ai1-11" class="g-interactions g-aiAbs g-aiPointText" style="top:16.0743%;margin-top:-9.8px;left:75.3237%;width:64px;">
+			<p class="g-pstyle1">$47,035</p>
+		</div>
+		<div id="text-2" class="g-interactions g-aiAbs g-aiPointText" style="top:17.7877%;margin-top:-20.6px;left:16.0355%;margin-left:-116.5px;width:233px;">
+			<p class="g-pstyle2">The second-highest county of </p>
+			<p class="g-pstyle2">median household income in Vermont</p>
+		</div>
+		<div id="g-ai1-13" class="g-interactions g-aiAbs g-aiPointText" style="top:18.1059%;margin-top:-9.8px;left:49.2093%;width:110px;">
+			<p class="g-pstyle0">Lamolle County</p>
+		</div>
+		<div id="g-ai1-14" class="g-interactions g-aiAbs g-aiPointText" style="top:18.5399%;margin-top:-9.8px;left:77.6202%;width:29px;">
+			<p class="g-pstyle1">1</p>
+		</div>
+		<div id="g-ai1-15" class="g-interactions g-aiAbs g-aiPointText" style="top:20.7154%;margin-top:-9.8px;left:51.6921%;width:64px;">
+			<p class="g-pstyle1">$64,179</p>
+		</div>
+		<div id="g-ai1-16" class="g-interactions g-aiAbs g-aiPointText" style="top:22.4569%;margin-top:-9.8px;left:61.2482%;width:121px;">
+			<p class="g-pstyle0">Caledonia County</p>
+		</div>
+		<div id="g-ai1-17" class="g-interactions g-aiAbs g-aiPointText" style="top:23.3271%;margin-top:-9.8px;left:38.2737%;width:127px;">
+			<p class="g-pstyle0">Chittenden County</p>
+		</div>
+		<div id="g-ai1-18" class="g-interactions g-aiAbs g-aiPointText" style="top:23.326%;margin-top:-9.8px;left:53.3262%;width:35px;">
+			<p class="g-pstyle1">57</p>
+		</div>
+		<div id="g-ai1-19" class="g-interactions g-aiAbs g-aiPointText" style="top:24.9213%;margin-top:-9.8px;left:65.6211%;width:64px;">
+			<p class="g-pstyle1">$52,481</p>
+		</div>
+		<div id="g-ai1-20" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:26.2266%;margin-top:-9.8px;left:41.4318%;width:64px;">
+			<p class="g-pstyle1">$76,316</p>
+		</div>
+		<div id="g-ai1-21" class="g-interactions g-aiAbs g-aiPointText" style="top:27.3869%;margin-top:-9.8px;left:67.0523%;width:42px;">
+			<p class="g-pstyle1">139</p>
+		</div>
+		<div id="g-ai1-22" class="g-interactions g-aiAbs g-aiPointText" style="top:28.8372%;margin-top:-9.8px;left:42.5155%;width:42px;">
+			<p class="g-pstyle1">668</p>
+		</div>
+		<div id="g-ai1-23" class="g-interactions g-aiAbs g-aiPointText" style="top:31.3039%;margin-top:-9.8px;left:50.0809%;width:132px;">
+			<p class="g-pstyle0">Washington County</p>
+		</div>
+		<div id="g-ai1-24" class="g-interactions g-aiAbs g-aiPointText" style="top:33.7683%;margin-top:-9.8px;left:53.239%;width:64px;">
+			<p class="g-pstyle1">$64,862</p>
+		</div>
+		<div id="g-ai1-25" class="g-interactions g-aiAbs g-aiPointText" style="top:36.3789%;margin-top:-9.8px;left:54.6585%;width:42px;">
+			<p class="g-pstyle1">389</p>
+		</div>
+		<div id="text-1" class="g-interactions g-aiAbs g-aiPointText" style="top:41.1733%;margin-top:-20.9px;left:16.7739%;margin-left:-113px;width:226px;">
+			<p class="g-pstyle2">The county with the highest number </p>
+			<p class="g-pstyle2">of homeless people in Vermont</p>
+		</div>
+		<div id="g-ai1-27" class="g-interactions g-aiAbs g-aiPointText" style="top:40.0058%;margin-top:-9.8px;left:36.2775%;width:112px;">
+			<p class="g-pstyle0">Addison County</p>
+		</div>
+		<div id="g-ai1-28" class="g-interactions g-aiAbs g-aiPointText" style="top:42.3264%;margin-top:-9.8px;left:56.6923%;width:106px;">
+			<p class="g-pstyle0">Orange County</p>
+		</div>
+		<div id="g-ai1-29" class="g-interactions g-aiAbs g-aiPointText" style="top:42.4703%;margin-top:-9.8px;left:38.5854%;width:64px;">
+			<p class="g-pstyle1">$70,262</p>
+		</div>
+		<div id="g-ai1-30" class="g-interactions g-aiAbs g-aiPointText" style="top:44.6458%;margin-top:-9.8px;left:40.0824%;width:35px;">
+			<p class="g-pstyle1">97</p>
+		</div>
+		<div id="g-ai1-31" class="g-interactions g-aiAbs g-aiPointText" style="top:45.0809%;margin-top:-9.8px;left:58.3928%;width:64px;">
+			<p class="g-pstyle1">$62,737</p>
+		</div>
+		<div id="g-ai1-32" class="g-interactions g-aiAbs g-aiPointText" style="top:46.9663%;margin-top:-9.8px;left:60.2461%;width:35px;">
+			<p class="g-pstyle1">38</p>
+		</div>
+		<div id="g-ai1-33" class="g-interactions g-aiAbs g-aiPointText" style="top:54.1477%;margin-top:-11.3px;left:70.2916%;width:162px;">
+			<p class="g-pstyle3">Median Household Income</p>
+		</div>
+		<div id="g-ai1-34" class="g-interactions g-aiAbs g-aiPointText" style="top:54.9442%;margin-top:-9.8px;left:52.8306%;width:112px;">
+			<p class="g-pstyle0">Windsor County</p>
+		</div>
+		<div id="g-ai1-35" class="g-interactions g-aiAbs g-aiPointText" style="top:57.5537%;margin-top:-9.8px;left:55.5028%;width:64px;">
+			<p class="g-pstyle1">$61,503</p>
+		</div>
+		<div id="g-ai1-36" class="g-interactions g-aiAbs g-aiPointText" style="top:59.1035%;margin-top:-10.5px;left:72.505%;width:71px;">
+			<p class="g-pstyle4">Vermont</p>
+		</div>
+		<div id="g-ai1-37" class="g-interactions g-aiAbs g-aiPointText" style="top:59.1035%;margin-top:-10.5px;left:84.5613%;width:70px;">
+			<p class="g-pstyle4">$63,447</p>
+		</div>
+		<div id="g-ai1-38" class="g-interactions g-aiAbs g-aiPointText" style="top:59.8742%;margin-top:-9.8px;left:56.8449%;width:42px;">
+			<p class="g-pstyle1">139</p>
+		</div>
+		<div id="g-ai1-39" class="g-interactions g-aiAbs g-aiPointText" style="top:60.1654%;margin-top:-9.8px;left:40.3191%;width:109px;">
+			<p class="g-pstyle0">Rutland County</p>
+		</div>
+		<div id="g-ai1-40" class="g-interactions g-aiAbs g-aiPointText" style="top:62.4848%;margin-top:-9.8px;left:42.384%;width:64px;">
+			<p class="g-pstyle1">$57,176</p>
+		</div>
+		<div id="g-ai1-41" class="g-interactions g-aiAbs g-aiPointText" style="top:64.8053%;margin-top:-9.8px;left:43.711%;width:42px;">
+			<p class="g-pstyle1">374</p>
+		</div>
+		<div id="g-ai1-42" class="g-interactions g-aiAbs g-aiPointText" style="top:66.6907%;margin-top:-9.8px;left:79.7679%;width:61px;">
+			<p class="g-pstyle1">Legend</p>
+		</div>
+		<div id="g-ai1-43" class="g-interactions g-aiAbs g-aiPointText" style="top:69.728%;margin-top:-8.8px;left:91.454%;width:54px;">
+			<p class="g-pstyle5">81,667</p>
+		</div>
+		<div id="g-ai1-44" class="g-interactions g-aiAbs g-aiPointText" style="top:70.0181%;margin-top:-8.8px;left:69.231%;width:54px;">
+			<p class="g-pstyle5">47,035</p>
+		</div>
+		<div id="g-ai1-45" class="g-interactions g-aiAbs g-aiPointText" style="top:78.2945%;margin-top:-9.8px;left:37.075%;width:130px;">
+			<p class="g-pstyle0">Bennington County</p>
+		</div>
+		<div id="g-ai1-46" class="g-interactions g-aiAbs g-aiPointText" style="top:78.6582%;margin-top:-11.3px;left:70.5188%;width:133px;">
+			<p class="g-pstyle3">Number of Homeless</p>
+		</div>
+		<div id="g-ai1-47" class="g-interactions g-aiAbs g-aiPointText" style="top:81.049%;margin-top:-9.8px;left:40.4762%;width:64px;">
+			<p class="g-pstyle1">$58,200</p>
+		</div>
+		<div id="g-ai1-48" class="g-interactions g-aiAbs g-aiPointText" style="top:83.3695%;margin-top:-9.8px;left:41.4187%;width:42px;">
+			<p class="g-pstyle1">278</p>
+		</div>
+		<div id="g-ai1-49" class="g-interactions g-aiAbs g-aiPointText" style="top:83.9041%;margin-top:-10.5px;left:72.5579%;width:71px;">
+			<p class="g-pstyle4">Vermont</p>
+		</div>
+		<div id="g-ai1-50" class="g-interactions g-aiAbs g-aiPointText" style="top:83.9041%;margin-top:-10.5px;left:86.0719%;width:55px;">
+			<p class="g-pstyle4">2,780</p>
+		</div>
+		<div id="g-ai1-51" class="g-interactions g-aiAbs g-aiPointText" style="top:84.6759%;margin-top:-9.8px;left:47.2437%;width:118px;">
+			<p class="g-pstyle0">Windham County</p>
+		</div>
+		<div id="g-ai1-52" class="g-interactions g-aiAbs g-aiPointText" style="top:86.7998%;margin-top:-8.5px;left:51.2589%;width:59px;">
+			<p class="g-pstyle6">$54,188</p>
+		</div>
+		<div id="g-ai1-53" class="g-interactions g-aiAbs g-aiPointText" style="top:88.6853%;margin-top:-8.5px;left:52.2181%;width:39px;">
+			<p class="g-pstyle6">404</p>
+		</div>
+	</div>
+
+
+</div>
+
+<!-- End ai2html - 2023-04-09 01:05 -->
+
+			</div>
+		</div>
+        <div class="scrolly-overlay">
+			<div class="step" id="step-zero">
+				<p>blank</p>
+			</div>
+          	<div class="step" id="step-one">
+            	<p>The flight MU5735 was scheduled to take off at 1:11 p.m. local time from Kunming en route to Guangzhou, a trip that this plane had made at least 66 times in the past year.</p>
+          	</div>
+          	<div class="step" id="step-two">
+            	<p>But during the cruise phase of flights, it suddenly began a rapid descent, losing about 25,900 feet within two minutes. Although there was a slight recover when reaching 7,425 feet, the plane kept falling, until crashed in Wuzhou, Guangxi Zhuang Autonomous Region.</p>
+          	</div>
+          	<div class="step" id="step-three">
+           	 	<p>The nation hasn’t seen a fatal commercial airline crash accident in a decade. The last plane crash happened in Yichun in 2010, when a airplane struck terrain while landing with poor visibility in radiation fog. 44 out of 96 people on board died.</p>
+          	</div>
+		  	<div class="step" id="step-four">
+            	<p>The last crash with no single survivor can be dated back to 2004, with death toll of 55 (53 on board and 2 on the ground).</p>
+          	</div>
+			<div class="step" id="step-five">
+            	<p>a</p>
+          	</div>
+			  <div class="step" id="step-six">
+            	<p>b</p>
+          	</div>
+			  <div class="step" id="step-seven">
+            	<p>c</p>
+          	</div>
+
+        </div>
+      </section>
+
+    <script>
+      
+      /* Scrollytelling code goes under here */
+      // annotations: text-1, text-2, text-3, text-4, 2-arrow-1, 2-circle-1, 2-circle-2, 2-arrow-2, 1-arrow-3, 1-circle-3, 1-circe-4, 1-arrow-4
+	  
+	  // disapper: county names and numbers
+	  d3.select("#text-1").classed('hidden', true)
+	  d3.select("#text-2").classed('hidden', true)
+	  d3.select("#text-3").classed('hidden', true)
+	  d3.select("#text-4").classed('hidden', true)
+	  d3.select("#arrow-1").classed('hidden', true)
+	  d3.select("#circle-1").classed('hidden', true)
+	  d3.select("#circle-2").classed('hidden', true)
+	  d3.select("#arrow-2").classed('hidden', true)
+	  d3.select("#arrow-3").classed('hidden', true)
+	  d3.select("#circle-3").classed('hidden', true)
+	  d3.select("#circe-4").classed('hidden', true)
+	  d3.select("#arrow-4").classed('hidden', true)
+	  d3.select("#g-ai1-1").classed('hidden', true)
+	  d3.select("#g-ai1-2").classed('hidden', true)
+	  d3.select("#g-ai1-3").classed('hidden', true)
+	  d3.select("#g-ai1-4").classed('hidden', true)
+	  d3.select("#g-ai1-5").classed('hidden', true)
+	  d3.select("#g-ai1-6").classed('hidden', true)
+	  d3.select("#g-ai1-7").classed('hidden', true)
+	  d3.select("#g-ai1-8").classed('hidden', true)
+	  d3.select("#g-ai1-9").classed('hidden', true)
+	  d3.select("#g-ai1-10").classed('hidden', true)
+	  d3.select("#g-ai1-11").classed('hidden', true)
+	  d3.select("#g-ai1-12").classed('hidden', true)
+	  d3.select("#g-ai1-13").classed('hidden', true)
+	  d3.select("#g-ai1-14").classed('hidden', true)
+	  d3.select("#g-ai1-15").classed('hidden', true)
+	  d3.select("#g-ai1-16").classed('hidden', true)
+	  d3.select("#g-ai1-17").classed('hidden', true)
+	  d3.select("#g-ai1-18").classed('hidden', true)
+	  d3.select("#g-ai1-19").classed('hidden', true)
+	  d3.select("#g-ai1-20").classed('hidden', true)
+	  d3.select("#g-ai1-21").classed('hidden', true)
+	  d3.select("#g-ai1-22").classed('hidden', true)
+	  d3.select("#g-ai1-23").classed('hidden', true)
+	  d3.select("#g-ai1-24").classed('hidden', true)
+	  d3.select("#g-ai1-25").classed('hidden', true)
+	  d3.select("#g-ai1-26").classed('hidden', true)
+	  d3.select("#g-ai1-27").classed('hidden', true)
+	  d3.select("#g-ai1-28").classed('hidden', true)
+	  d3.select("#g-ai1-29").classed('hidden', true)
+	  d3.select("#g-ai1-30").classed('hidden', true)
+	  d3.select("#g-ai1-31").classed('hidden', true)
+	  d3.select("#g-ai1-32").classed('hidden', true)
+	  d3.select("#g-ai1-33").classed('hidden', true)
+	  d3.select("#g-ai1-34").classed('hidden', true)
+	  d3.select("#g-ai1-35").classed('hidden', true)
+	  d3.select("#g-ai1-36").classed('hidden', true)
+	  d3.select("#g-ai1-37").classed('hidden', true)
+	  d3.select("#g-ai1-38").classed('hidden', true)
+	  d3.select("#g-ai1-39").classed('hidden', true)
+	  d3.select("#g-ai1-40").classed('hidden', true)
+	  d3.select("#g-ai1-41").classed('hidden', true)
+	  d3.select("#g-ai1-42").classed('hidden', true)
+	  d3.select("#g-ai1-43").classed('hidden', true)
+	  d3.select("#g-ai1-44").classed('hidden', true)
+	  d3.select("#g-ai1-45").classed('hidden', true)
+	  d3.select("#g-ai1-46").classed('hidden', true)
+	  d3.select("#g-ai1-47").classed('hidden', true)
+	  d3.select("#g-ai1-48").classed('hidden', true)
+	  d3.select("#g-ai1-49").classed('hidden', true)
+	  d3.select("#g-ai1-50").classed('hidden', true)
+	  d3.select("#g-ai1-51").classed('hidden', true)
+	  d3.select("#g-ai1-52").classed('hidden', true)
+	  d3.select("#g-ai1-53").classed('hidden', true)
+	  
+	  // Legends
+	  d3.select("#homeless-box-2").classed('hidden', true)
+	  d3.select("#income-box-2").classed('hidden', true)
+
+	  // disapper: county names and numbers
+	  d3.select("#step-zero").on('stepin', function(e) {
+      console.log("Got to the step zero")
+	  d3.select("#text-1").classed('hidden', true)
+	  d3.select("#text-2").classed('hidden', true)
+	  d3.select("#text-3").classed('hidden', true)
+	  d3.select("#text-4").classed('hidden', true)
+	  d3.select("#arrow-1").classed('hidden', true)
+	  d3.select("#circle-1").classed('hidden', true)
+	  d3.select("#circle-2").classed('hidden', true)
+	  d3.select("#arrow-2").classed('hidden', true)
+	  d3.select("#arrow-3").classed('hidden', true)
+	  d3.select("#circle-3").classed('hidden', true)
+	  d3.select("#circe-4").classed('hidden', true)
+	  d3.select("#arrowa-4").classed('hidden', true)
+	  d3.select("#arrow-4").classed('hidden', true)
+	  d3.select("#g-ai1-1").classed('hidden', true)
+	  d3.select("#g-ai1-2").classed('hidden', true)
+	  d3.select("#g-ai1-3").classed('hidden', true)
+	  d3.select("#g-ai1-4").classed('hidden', true)
+	  d3.select("#g-ai1-5").classed('hidden', true)
+	  d3.select("#g-ai1-6").classed('hidden', true)
+	  d3.select("#g-ai1-7").classed('hidden', true)
+	  d3.select("#g-ai1-8").classed('hidden', true)
+	  d3.select("#g-ai1-9").classed('hidden', true)
+	  d3.select("#g-ai1-10").classed('hidden', true)
+	  d3.select("#g-ai1-11").classed('hidden', true)
+	  d3.select("#g-ai1-12").classed('hidden', true)
+	  d3.select("#g-ai1-13").classed('hidden', true)
+	  d3.select("#g-ai1-14").classed('hidden', true)
+	  d3.select("#g-ai1-15").classed('hidden', true)
+	  d3.select("#g-ai1-16").classed('hidden', true)
+	  d3.select("#g-ai1-17").classed('hidden', true)
+	  d3.select("#g-ai1-18").classed('hidden', true)
+	  d3.select("#g-ai1-19").classed('hidden', true)
+	  d3.select("#g-ai1-20").classed('hidden', true)
+	  d3.select("#g-ai1-21").classed('hidden', true)
+	  d3.select("#g-ai1-22").classed('hidden', true)
+	  d3.select("#g-ai1-23").classed('hidden', true)
+	  d3.select("#g-ai1-24").classed('hidden', true)
+	  d3.select("#g-ai1-25").classed('hidden', true)
+	  d3.select("#g-ai1-26").classed('hidden', true)
+	  d3.select("#g-ai1-27").classed('hidden', true)
+	  d3.select("#g-ai1-28").classed('hidden', true)
+	  d3.select("#g-ai1-29").classed('hidden', true)
+	  d3.select("#g-ai1-30").classed('hidden', true)
+	  d3.select("#g-ai1-31").classed('hidden', true)
+	  d3.select("#g-ai1-32").classed('hidden', true)
+	  d3.select("#g-ai1-33").classed('hidden', true)
+	  d3.select("#g-ai1-34").classed('hidden', true)
+	  d3.select("#g-ai1-35").classed('hidden', true)
+	  d3.select("#g-ai1-36").classed('hidden', true)
+	  d3.select("#g-ai1-37").classed('hidden', true)
+	  d3.select("#g-ai1-38").classed('hidden', true)
+	  d3.select("#g-ai1-39").classed('hidden', true)
+	  d3.select("#g-ai1-40").classed('hidden', true)
+	  d3.select("#g-ai1-41").classed('hidden', true)
+	  d3.select("#g-ai1-42").classed('hidden', true)
+	  d3.select("#g-ai1-43").classed('hidden', true)
+	  d3.select("#g-ai1-44").classed('hidden', true)
+	  d3.select("#g-ai1-45").classed('hidden', true)
+	  d3.select("#g-ai1-46").classed('hidden', true)
+	  d3.select("#g-ai1-47").classed('hidden', true)
+	  d3.select("#g-ai1-48").classed('hidden', true)
+	  d3.select("#g-ai1-49").classed('hidden', true)
+	  d3.select("#g-ai1-50").classed('hidden', true)
+	  d3.select("#g-ai1-51").classed('hidden', true)
+	  d3.select("#g-ai1-52").classed('hidden', true)
+	  d3.select("#g-ai1-53").classed('hidden', true)
+	  
+	  // Legends
+	  d3.select("#homeless-box-2").classed('hidden', true)
+	  d3.select("#income-box-2").classed('hidden', true)
+
+	  })
+
+	  // county namess
+	  d3.select("#step-one").on('stepin', function(e) {
+      console.log("Got to the step one")
+	  d3.select("#g-ai1-1").classed('hidden', false)
+	  d3.select("#g-ai1-2").classed('hidden', false)
+	//   d3.select("#g-ai1-3").classed('hidden', false) // income
+	  d3.select("#g-ai1-4").classed('hidden', false)
+	//   d3.select("#g-ai1-5").classed('hidden', false) // income
+	//   d3.select("#g-ai1-6").classed('hidden', false) // homeless
+	//   d3.select("#g-ai1-7").classed('hidden', false) // income
+	  d3.select("#g-ai1-8").classed('hidden', false)
+	//   d3.select("#g-ai1-9").classed('hidden', false) // homeless
+	//   d3.select("#g-ai1-10").classed('hidden', false) // homeless
+	//   d3.select("#g-ai1-11").classed('hidden', false) // income
+	  d3.select("#g-ai1-12").classed('hidden', false)
+	  d3.select("#g-ai1-13").classed('hidden', false)
+	//   d3.select("#g-ai1-14").classed('hidden', false) // homeless
+	//   d3.select("#g-ai1-15").classed('hidden', false) // income
+	  d3.select("#g-ai1-16").classed('hidden', false)
+	  d3.select("#g-ai1-17").classed('hidden', false)
+	//   d3.select("#g-ai1-18").classed('hidden', false) // homeless
+	//   d3.select("#g-ai1-19").classed('hidden', false) // income
+	//   d3.select("#g-ai1-20").classed('hidden', false) // income
+	//   d3.select("#g-ai1-21").classed('hidden', false) // homeless
+	//   d3.select("#g-ai1-22").classed('hidden', false) // homeless
+	  d3.select("#g-ai1-23").classed('hidden', false)
+	//   d3.select("#g-ai1-24").classed('hidden', false) // income
+	//   d3.select("#g-ai1-25").classed('hidden', false) // homeless
+	  d3.select("#g-ai1-26").classed('hidden', false)
+	  d3.select("#g-ai1-27").classed('hidden', false)
+	  d3.select("#g-ai1-28").classed('hidden', false)
+	//   d3.select("#g-ai1-29").classed('hidden', false) // income
+	//   d3.select("#g-ai1-30").classed('hidden', false) // homeless
+	//   d3.select("#g-ai1-31").classed('hidden', false) // income
+	//   d3.select("#g-ai1-32").classed('hidden', false) // homeless
+	//   d3.select("#g-ai1-33").classed('hidden', false) // median household income
+	  d3.select("#g-ai1-34").classed('hidden', false)
+	//   d3.select("#g-ai1-35").classed('hidden', false) // income
+	//   d3.select("#g-ai1-36").classed('hidden', false) // income legend: vermont
+	//   d3.select("#g-ai1-37").classed('hidden', false) // income legend: number
+	//   d3.select("#g-ai1-38").classed('hidden', false) // homeless
+	  d3.select("#g-ai1-39").classed('hidden', false)
+	//   d3.select("#g-ai1-40").classed('hidden', false) // income
+	//   d3.select("#g-ai1-41").classed('hidden', false) // homeless
+	//   d3.select("#g-ai1-42").classed('hidden', false) // income legend: legend
+	//   d3.select("#g-ai1-43").classed('hidden', false) // income legend: number
+	//   d3.select("#g-ai1-44").classed('hidden', false) // income legend: number
+	  d3.select("#g-ai1-45").classed('hidden', false)
+	//   d3.select("#g-ai1-46").classed('hidden', false) // homeless legend: names
+	//   d3.select("#g-ai1-47").classed('hidden', false) // income
+	//   d3.select("#g-ai1-48").classed('hidden', false) // homeless
+	//   d3.select("#g-ai1-49").classed('hidden', false) // homeless legend: vermont
+	//   d3.select("#g-ai1-50").classed('hidden', false) // homeless legend: number
+	  d3.select("#g-ai1-51").classed('hidden', false)
+	//   d3.select("#g-ai1-52").classed('hidden', false) // income
+	  d3.select("#g-ai1-53").classed('hidden', false) // homeless
+	  
+	  // Legends
+	//   d3.select("#homeless-box-2").classed('hidden', true)
+	//   d3.select("#income-box-2").classed('hidden', true)
+
+	  })
+
+
+	  // county income and legends
+	  d3.select("#step-two").on('stepin', function(e) {
+      console.log("Got to the step one")
+	  d3.select("#g-ai1-1").classed('hidden', false)
+	  d3.select("#g-ai1-2").classed('hidden', false)
+	  d3.select("#g-ai1-3").classed('hidden', false) // income
+	  d3.select("#g-ai1-4").classed('hidden', false)
+	  d3.select("#g-ai1-5").classed('hidden', false) // income
+	//   d3.select("#g-ai1-6").classed('hidden', false) // homeless
+	  d3.select("#g-ai1-7").classed('hidden', false) // income
+	  d3.select("#g-ai1-8").classed('hidden', false)
+	//   d3.select("#g-ai1-9").classed('hidden', false) // homeless
+	//   d3.select("#g-ai1-10").classed('hidden', false) // homeless
+	  d3.select("#g-ai1-11").classed('hidden', false) // income
+	  d3.select("#g-ai1-12").classed('hidden', false)
+	  d3.select("#g-ai1-13").classed('hidden', false)
+	//   d3.select("#g-ai1-14").classed('hidden', false) // homeless
+	  d3.select("#g-ai1-15").classed('hidden', false) // income
+	  d3.select("#g-ai1-16").classed('hidden', false)
+	  d3.select("#g-ai1-17").classed('hidden', false)
+	//   d3.select("#g-ai1-18").classed('hidden', false) // homeless
+	  d3.select("#g-ai1-19").classed('hidden', false) // income
+	  d3.select("#g-ai1-20").classed('hidden', false) // income
+	//   d3.select("#g-ai1-21").classed('hidden', false) // homeless
+	//   d3.select("#g-ai1-22").classed('hidden', false) // homeless
+	  d3.select("#g-ai1-23").classed('hidden', false)
+	  d3.select("#g-ai1-24").classed('hidden', false) // income
+	//   d3.select("#g-ai1-25").classed('hidden', false) // homeless
+	  d3.select("#g-ai1-26").classed('hidden', false)
+	  d3.select("#g-ai1-27").classed('hidden', false)
+	  d3.select("#g-ai1-28").classed('hidden', false)
+	  d3.select("#g-ai1-29").classed('hidden', false) // income
+	//   d3.select("#g-ai1-30").classed('hidden', false) // homeless
+	  d3.select("#g-ai1-31").classed('hidden', false) // income
+	//   d3.select("#g-ai1-32").classed('hidden', false) // homeless
+	//   d3.select("#g-ai1-33").classed('hidden', false) // median household income
+	  d3.select("#g-ai1-34").classed('hidden', false)
+	  d3.select("#g-ai1-35").classed('hidden', false) // income
+	  d3.select("#g-ai1-36").classed('hidden', false) // income legend: vermont
+	  d3.select("#g-ai1-37").classed('hidden', false) // income legend: number
+	//   d3.select("#g-ai1-38").classed('hidden', false) // homeless
+	  d3.select("#g-ai1-39").classed('hidden', false)
+	  d3.select("#g-ai1-40").classed('hidden', false) // income
+	//   d3.select("#g-ai1-41").classed('hidden', false) // homeless
+	  d3.select("#g-ai1-42").classed('hidden', false) // income legend: legend
+	  d3.select("#g-ai1-43").classed('hidden', false) // income legend: number
+	  d3.select("#g-ai1-44").classed('hidden', false) // income legend: number
+	  d3.select("#g-ai1-45").classed('hidden', false)
+	//   d3.select("#g-ai1-46").classed('hidden', false) // homeless legend: names
+	  d3.select("#g-ai1-47").classed('hidden', false) // income
+	//   d3.select("#g-ai1-48").classed('hidden', false) // homeless
+	//   d3.select("#g-ai1-49").classed('hidden', false) // homeless legend: vermont
+	//   d3.select("#g-ai1-50").classed('hidden', false) // homeless legend: number
+	  d3.select("#g-ai1-51").classed('hidden', false)
+	  d3.select("#g-ai1-52").classed('hidden', false) // income
+	  d3.select("#g-ai1-53").classed('hidden', false) // homeless
+	  
+	  // Legends
+	//   d3.select("#homeless-box-2").classed('hidden', true)
+	  d3.select("#income-box-2").classed('hidden', false)
+	  
+	  })
+
+	  
+	  // county part: text, arrow and circle
+	  d3.select("#step-three").on('stepin', function(e) {
+      console.log("Got to the step one") 
+	  
+	//   d3.select("#text-1").classed('hidden', false) // homless
+	  d3.select("#text-2").classed('hidden', false)
+	//   d3.select("#text-3").classed('hidden', false) // homeless
+	  d3.select("#text-4").classed('hidden', false)
+	//   d3.select("#arrow-1").classed('hidden', false) // homless
+	//   d3.select("#circle-1").classed('hidden', false) // homless
+	  d3.select("#circle-2").classed('hidden', false)
+	  d3.select("#arrow-2").classed('hidden', false)
+	//   d3.select("#arrow-3").classed('hidden', false) // homeless
+	//   d3.select("#circle-3").classed('hidden', false)
+	  d3.select("#circe-4").classed('hidden', false)
+	  d3.select("#arrow-4").classed('hidden', false)
+
+	  d3.select("#g-ai1-1").classed('hidden', false)
+	  d3.select("#g-ai1-2").classed('hidden', false)
+	  d3.select("#g-ai1-3").classed('hidden', false) // income
+	  d3.select("#g-ai1-4").classed('hidden', false)
+	  d3.select("#g-ai1-5").classed('hidden', false) // income
+	//   d3.select("#g-ai1-6").classed('hidden', false) // homeless
+	  d3.select("#g-ai1-7").classed('hidden', false) // income
+	  d3.select("#g-ai1-8").classed('hidden', false)
+	//   d3.select("#g-ai1-9").classed('hidden', false) // homeless
+	//   d3.select("#g-ai1-10").classed('hidden', false) // homeless
+	  d3.select("#g-ai1-11").classed('hidden', false) // income
+	  d3.select("#g-ai1-12").classed('hidden', false)
+	  d3.select("#g-ai1-13").classed('hidden', false)
+	//   d3.select("#g-ai1-14").classed('hidden', false) // homeless
+	  d3.select("#g-ai1-15").classed('hidden', false) // income
+	  d3.select("#g-ai1-16").classed('hidden', false)
+	  d3.select("#g-ai1-17").classed('hidden', false)
+	//   d3.select("#g-ai1-18").classed('hidden', false) // homeless
+	  d3.select("#g-ai1-19").classed('hidden', false) // income
+	  d3.select("#g-ai1-20").classed('hidden', false) // income
+	//   d3.select("#g-ai1-21").classed('hidden', false) // homeless
+	//   d3.select("#g-ai1-22").classed('hidden', false) // homeless
+	  d3.select("#g-ai1-23").classed('hidden', false)
+	  d3.select("#g-ai1-24").classed('hidden', false) // income
+	//   d3.select("#g-ai1-25").classed('hidden', false) // homeless
+	  d3.select("#g-ai1-26").classed('hidden', false)
+	  d3.select("#g-ai1-27").classed('hidden', false)
+	  d3.select("#g-ai1-28").classed('hidden', false)
+	  d3.select("#g-ai1-29").classed('hidden', false) // income
+	//   d3.select("#g-ai1-30").classed('hidden', false) // homeless
+	  d3.select("#g-ai1-31").classed('hidden', false) // income
+	//   d3.select("#g-ai1-32").classed('hidden', false) // homeless
+	//   d3.select("#g-ai1-33").classed('hidden', false) // median household income
+	  d3.select("#g-ai1-34").classed('hidden', false)
+	  d3.select("#g-ai1-35").classed('hidden', false) // income
+	  d3.select("#g-ai1-36").classed('hidden', false) // income legend: vermont
+	  d3.select("#g-ai1-37").classed('hidden', false) // income legend: number
+	//   d3.select("#g-ai1-38").classed('hidden', false) // homeless
+	  d3.select("#g-ai1-39").classed('hidden', false)
+	  d3.select("#g-ai1-40").classed('hidden', false) // income
+	//   d3.select("#g-ai1-41").classed('hidden', false) // homeless
+	  d3.select("#g-ai1-42").classed('hidden', false) // income legend: legend
+	  d3.select("#g-ai1-43").classed('hidden', false) // income legend: number
+	  d3.select("#g-ai1-44").classed('hidden', false) // income legend: number
+	  d3.select("#g-ai1-45").classed('hidden', false)
+	//   d3.select("#g-ai1-46").classed('hidden', false) // homeless legend: names
+	  d3.select("#g-ai1-47").classed('hidden', false) // income
+	//   d3.select("#g-ai1-48").classed('hidden', false) // homeless
+	//   d3.select("#g-ai1-49").classed('hidden', false) // homeless legend: vermont
+	//   d3.select("#g-ai1-50").classed('hidden', false) // homeless legend: number
+	  d3.select("#g-ai1-51").classed('hidden', false)
+	  d3.select("#g-ai1-52").classed('hidden', false) // income
+	  d3.select("#g-ai1-53").classed('hidden', false) // homeless
+	  
+	  // Legends
+	//   d3.select("#homeless-box-2").classed('hidden', true)
+	  d3.select("#income-box-2").classed('hidden', false)
+	  
+	  })
+
+	  
+      
+
+	// 	d3.select("#path-1-1").classed("hidden", true)
+	//     d3.select("#path-1-2").classed("hidden", true)
+	//     d3.select("#path-2-1").classed("hidden", true)
+	//     d3.select("#path-2-2").classed("hidden", true)
+	//     d3.select("#path-3").classed("hidden", true)
+	// 	d3.select("#path-4").classed("hidden", true)
+	// 	d3.selectAll('.g-text-case1-1').classed("hidden", true)
+	// 	d3.selectAll('.g-text-case1-2').classed("hidden", true)
+	// 	d3.selectAll('.g-text-case2').classed("hidden", true)
+	// 	d3.selectAll('.g-tag-baotou').classed("hidden", true)
+	// 	d3.selectAll('.g-tag_yichun').classed("hidden", true)
+	// 	d3.selectAll("[data-name='dot-baotou'").classed("hidden", true)
+	// 	d3.selectAll("[data-name='dot-yichun'").classed("hidden", true)
+	  
+
+	//   d3.select("#step-zero").on('stepin',function(e) {
+	// 	d3.select("#path-1-1").classed("hidden", true)
+	//     d3.select("#path-1-2").classed("hidden", true)
+	//     d3.select("#path-2-1").classed("hidden", true)
+	//     d3.select("#path-2-2").classed("hidden", true)
+	//     d3.select("#path-3").classed("hidden", true)
+	// 	d3.select("#path-4").classed("hidden", true)
+	// 	d3.selectAll('.g-text-case1-1').classed("hidden", true)
+	// 	d3.selectAll('.g-text-case1-2').classed("hidden", true)
+	// 	d3.selectAll('.g-text-case2').classed("hidden", true)
+	// 	d3.selectAll('.g-tag-baotou').classed("hidden", true)
+	// 	d3.selectAll('.g-tag_yichun').classed("hidden", true)
+	// 	d3.selectAll("[data-name='dot-baotou'").classed("hidden", true)
+	// 	d3.selectAll("[data-name='dot-yichun'").classed("hidden", true)
+	//   })
+
+	//   d3.select("#step-one").on('stepin',function(e) {
+	// 	d3.select("#path-1-1").classed("hidden", false)
+	//     d3.select("#path-1-2").classed("hidden", true)
+	//     d3.select("#path-2-1").classed("hidden", false)
+	//     d3.select("#path-2-2").classed("hidden", true)
+	//     d3.select("#path-3").classed("hidden", true)
+	// 	d3.select("#path-4").classed("hidden", true)
+	// 	d3.selectAll('.g-text-case1-1').classed("hidden", true)
+	// 	d3.selectAll('.g-text-case1-2').classed("hidden", true)
+	// 	d3.selectAll('.g-text-case2').classed("hidden", true)
+	// 	d3.selectAll('.g-tag-baotou').classed("hidden", true)
+	// 	d3.selectAll('.g-tag_yichun').classed("hidden", true)
+	// 	d3.selectAll("[data-name='dot-baotou'").classed("hidden", true)
+	// 	d3.selectAll("[data-name='dot-yichun'").classed("hidden", true)
+	//   })
+
+	//   d3.select("#step-two").on('stepin',function(e) {
+	// 	d3.select("#path-1-1").classed("hidden", false)
+	//     d3.select("#path-1-2").classed("hidden", false)
+	//     d3.select("#path-2-1").classed("hidden", false)
+	//     d3.select("#path-2-2").classed("hidden", false)
+	//     d3.select("#path-3").classed("hidden", true)
+	// 	d3.select("#path-4").classed("hidden", true)
+	// 	d3.selectAll('.g-text-case1-1').classed("hidden", false)
+	// 	d3.selectAll('.g-text-case1-2').classed("hidden", false)
+	// 	d3.selectAll('.g-text-case2').classed("hidden", true)
+	// 	d3.selectAll('.g-tag-baotou').classed("hidden", true)
+	// 	d3.selectAll('.g-tag_yichun').classed("hidden", true)
+	// 	d3.selectAll("[data-name='dot-baotou'").classed("hidden", true)
+	// 	d3.selectAll("[data-name='dot-yichun'").classed("hidden", true)
+	//   })
+
+	//   d3.select("#step-three").on('stepin',function(e) {
+	// 	d3.select("#path-1-1").classed("hidden", true)
+	//     d3.select("#path-1-2").classed("hidden", true)
+	//     d3.select("#path-2-1").classed("hidden", true)
+	//     d3.select("#path-2-2").classed("hidden", true)
+	//     d3.select("#path-3").classed("hidden", true)
+	// 	d3.select("#path-4").classed("hidden", true)
+	// 	d3.selectAll('.g-text-case1-1').classed("hidden", true)
+	// 	d3.selectAll('.g-text-case1-2').classed("hidden", true)
+	// 	d3.selectAll('.g-text-case2').classed("hidden", true)
+	// 	d3.selectAll('.g-tag-baotou').classed("hidden", true)
+	// 	d3.selectAll('.g-tag_yichun').classed("hidden", false)
+	// 	d3.selectAll("[data-name='dot-baotou'").classed("hidden", true)
+	// 	d3.selectAll("[data-name='dot-yichun'").classed("hidden", false)
+	//   })
+
+	//   d3.select("#step-four").on('stepin',function(e) {
+	// 	d3.select("#path-1-1").classed("hidden", true)
+	//     d3.select("#path-1-2").classed("hidden", true)
+	//     d3.select("#path-2-1").classed("hidden", true)
+	//     d3.select("#path-2-2").classed("hidden", true)
+	//     d3.select("#path-3").classed("hidden", false)
+	// 	d3.select("#path-4").classed("hidden", false)
+	// 	d3.selectAll('.g-text-case1-1').classed("hidden", true)
+	// 	d3.selectAll('.g-text-case1-2').classed("hidden", true)
+	// 	d3.selectAll('.g-text-case2').classed("hidden", false)
+	// 	d3.selectAll('.g-tag-baotou').classed("hidden", false)
+	// 	d3.selectAll('.g-tag_yichun').classed("hidden", true)
+	// 	d3.selectAll("[data-name='dot-baotou'").classed("hidden", false)
+	// 	d3.selectAll("[data-name='dot-yichun'").classed("hidden", true)
+	//   })
+    </script>
+	<div class="text-container">
+		<p>The recent tragedy put an end on the Chinese air carriers safe flying record for more than 100 million straight hours, which was a world record. For more than 10 years, China kept less than two accidents per million commercial departures, far below the world average. </p>
+		<p class="chart-headline">China has less commercial airline accidents than the world average since 2008</p>
+		<div class="ai2html-container">
+
+<!-- Generated by ai2html v0.106.0 - 2022-04-18 01:53 -->
+<!-- ai file: linechart.ai -->
+<style media="screen,print">
+	#g-linechart-box ,
+	#g-linechart-box .g-artboard {
+		margin:0 auto;
+	}
+	#g-linechart-box p {
+		margin:0;
+	}
+	#g-linechart-box .g-aiAbs {
+		position:absolute;
+	}
+	#g-linechart-box .g-aiImg {
+		position:absolute;
+		top:0;
+		display:block;
+		width:100% !important;
+	}
+	#g-linechart-box .g-aiSymbol {
+		position: absolute;
+		box-sizing: border-box;
+	}
+	#g-linechart-box .g-aiPointText p { white-space: nowrap; }
+	#g-linechart-Artboard_1 {
+		position:relative;
+		overflow:hidden;
+	}
+	#g-linechart-Artboard_1 p {
+		font-family:Open Sans;
+		font-weight:400;
+		line-height:22px;
+		height:auto;
+		opacity:1;
+		letter-spacing:0em;
+		font-size:18px;
+		text-align:left;
+		color:rgb(0,0,0);
+		text-transform:none;
+		padding-bottom:0;
+		padding-top:0;
+		mix-blend-mode:normal;
+		font-style:normal;
+		position:static;
+	}
+	#g-linechart-Artboard_1 .g-pstyle0 {
+		height:22px;
+	}
+	#g-linechart-Artboard_1 .g-pstyle1 {
+		font-weight:700;
+		line-height:24px;
+		height:24px;
+		font-size:20px;
+		color:rgb(99,99,99);
+	}
+	#g-linechart-Artboard_1 .g-pstyle2 {
+		font-weight:700;
+		line-height:24px;
+		height:24px;
+		font-size:20px;
+		color:rgb(86,86,86);
+	}
+	#g-linechart-Artboard_1 .g-pstyle3 {
+		font-weight:700;
+		line-height:24px;
+		height:24px;
+		font-size:20px;
+		color:rgb(173,4,4);
+	}
+	#g-linechart-Artboard_1 .g-pstyle4 {
+		line-height:24px;
+		height:24px;
+		font-size:20px;
+	}
+
+</style>
+
+<div id="g-linechart-box" class="ai2html">
+
+	<!-- Artboard: Artboard_1 -->
+	<div id="g-linechart-Artboard_1" class="g-artboard" style="max-width: 1017px;max-height: 677px" data-aspect-ratio="1.502" data-min-width="0">
+<div style="padding: 0 0 66.5683% 0;"></div>
+		<img id="g-linechart-Artboard_1-img" class="g-aiImg" alt="" src="./images/svg/linechart-Artboard_1.png"/>
+		<div id="g-ai0-1" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:11.8392%;margin-top:-12.2px;left:8.0621%;width:416px;">
+			<p class="g-pstyle0">6  accidents per million commercial departures</p>
+		</div>
+		<div id="g-ai0-2" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:25.6276%;margin-top:-13.5px;left:12.7152%;width:82px;">
+			<p class="g-pstyle1">World</p>
+		</div>
+		<div id="g-ai0-3" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:37.5408%;margin-top:-12.2px;left:8.0025%;width:32px;">
+			<p class="g-pstyle0">4</p>
+		</div>
+		<div id="g-ai0-4" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:47.3411%;margin-top:-13.5px;left:12.6978%;width:60px;">
+			<p class="g-pstyle2">U.S.</p>
+		</div>
+		<div id="g-ai0-5" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:61.3222%;margin-top:-12.2px;left:8.0025%;width:32px;">
+			<p class="g-pstyle0">2</p>
+		</div>
+		<div id="g-ai0-6" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:64.7709%;margin-top:-13.5px;left:12.6394%;width:79px;">
+			<p class="g-pstyle3">China</p>
+		</div>
+		<div id="g-ai0-7" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:85.1036%;margin-top:-12.2px;left:8.0621%;width:32px;">
+			<p class="g-pstyle0">0</p>
+		</div>
+		<div id="g-ai0-8" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:90.7355%;margin-top:-13.3px;left:10.462%;width:68px;">
+			<p class="g-pstyle4">2008</p>
+		</div>
+		<div id="g-ai0-9" class="g-Layer_1 g-aiAbs g-aiPointText" style="top:90.7355%;margin-top:-13.3px;left:83.4558%;width:68px;">
+			<p class="g-pstyle4">2021</p>
+		</div>
+	</div>
+
+</div>
+
+<!-- End ai2html - 2022-04-18 01:53 -->
+
+		</div>
+	</div>
+
+	<section id="scrolly">
+        <div class="sticky-thing">
+			<div class="ai2html-container">
+				<!-- Generated by ai2html v0.106.0 - 2022-04-18 08:43 -->
+<!-- ai file: plot.ai -->
+<style media="screen,print">
+	#g-plot-box ,
+	#g-plot-box .g-artboard {
+		margin:0 auto;
+	}
+	#g-plot-box p {
+		margin:0;
+	}
+	#g-plot-box .g-aiAbs {
+		position:absolute;
+	}
+	#g-plot-box .g-aiImg {
+		position:absolute;
+		top:0;
+		display:block;
+		width:100% !important;
+	}
+	#g-plot-box .g-aiSymbol {
+		position: absolute;
+		box-sizing: border-box;
+	}
+	#g-plot-box .g-aiPointText p { white-space: nowrap; }
+	#g-plot-Artboard_1 {
+		position:relative;
+		overflow:hidden;
+	}
+	#g-plot-Artboard_1 p {
+		font-family:Open Sans;
+		font-weight:700;
+		line-height:19px;
+		height:auto;
+		opacity:1;
+		letter-spacing:0em;
+		font-size:16px;
+		text-align:left;
+		color:rgb(204,24,23);
+		text-transform:none;
+		padding-bottom:0;
+		padding-top:0;
+		mix-blend-mode:normal;
+		font-style:normal;
+		position:static;
+	}
+	#g-plot-Artboard_1 .g-pstyle0 {
+		height:19px;
+	}
+	#g-plot-Artboard_1 .g-pstyle1 {
+		font-weight:400;
+		height:19px;
+		color:rgb(150,102,102);
+	}
+	#g-plot-Artboard_1 .g-pstyle2 {
+		font-weight:400;
+		height:19px;
+		color:rgb(178,114,114);
+	}
+	#g-plot-Artboard_1 .g-pstyle3 {
+		font-weight:400;
+		height:19px;
+		color:rgb(112,27,28);
+	}
+
+</style>
+
+<div id="g-plot-box" class="ai2html">
+
+	<!-- Artboard: Artboard_1 -->
+	<div id="g-plot-Artboard_1" class="g-artboard" style="max-width: 474px;max-height: 367px" data-aspect-ratio="1.291" data-min-width="0">
+<div style="padding: 0 0 77.4374% 0;"></div>
+		<img id="g-plot-Artboard_1-img" class="g-aiImg" alt="" src="./images/svg/plot-Artboard_1.png"/>
+<!-- Generator: Adobe Illustrator 25.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg class="g-aiImg" version="1.2" baseProfile="tiny" id="g-plot-Artboard_1-interactive-img" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	 x="0px" y="0px" viewBox="0 0 473.625 367.053" overflow="visible" xml:space="preserve">
+<g>
+	<g id="others" data-name="others">
+		<circle fill="#803D36" cx="306.235" cy="240.636" r="7.797"/>
+		<circle fill="#803D36" cx="306.235" cy="218.901" r="7.797"/>
+		<circle fill="#803D36" cx="306.235" cy="197.173" r="7.797"/>
+		<circle fill="#803D36" cx="284.064" cy="284.04" r="7.797"/>
+		<circle fill="#803D36" cx="283.713" cy="240.636" r="7.797"/>
+		<circle fill="#803D36" cx="283.713" cy="262.305" r="7.797"/>
+		<circle fill="#803D36" cx="283.713" cy="218.901" r="7.797"/>
+		<circle fill="#803D36" cx="283.713" cy="197.173" r="7.797"/>
+		<circle fill="#803D36" cx="261.506" cy="284.04" r="7.797"/>
+		<circle fill="#803D36" cx="261.19" cy="240.636" r="7.797"/>
+		<circle fill="#803D36" cx="261.19" cy="262.305" r="7.797"/>
+		<circle fill="#803D36" cx="261.19" cy="218.901" r="7.797"/>
+		<circle fill="#803D36" cx="261.19" cy="197.173" r="7.797"/>
+		<circle fill="#803D36" cx="238.948" cy="284.04" r="7.797"/>
+		<circle fill="#803D36" cx="238.667" cy="240.636" r="7.797"/>
+		<circle fill="#803D36" cx="238.667" cy="262.305" r="7.797"/>
+		<circle fill="#803D36" cx="238.667" cy="218.901" r="7.797"/>
+		<circle fill="#803D36" cx="238.667" cy="197.173" r="7.797"/>
+		<circle fill="#803D36" cx="216.391" cy="284.04" r="7.797"/>
+		<circle fill="#803D36" cx="216.145" cy="240.636" r="7.797"/>
+		<circle fill="#803D36" cx="216.145" cy="262.305" r="7.797"/>
+		<circle fill="#803D36" cx="216.145" cy="218.901" r="7.797"/>
+		<circle fill="#803D36" cx="216.145" cy="197.173" r="7.797"/>
+		<circle fill="#803D36" cx="193.833" cy="284.04" r="7.797"/>
+		<circle fill="#803D36" cx="193.622" cy="240.636" r="7.797"/>
+		<circle fill="#803D36" cx="193.622" cy="262.305" r="7.797"/>
+		<circle fill="#803D36" cx="193.622" cy="218.901" r="7.797"/>
+		<circle fill="#803D36" cx="193.622" cy="197.173" r="7.797"/>
+		<circle fill="#803D36" cx="171.275" cy="284.04" r="7.797"/>
+		<circle fill="#803D36" cx="171.1" cy="240.636" r="7.797"/>
+		<circle fill="#803D36" cx="171.1" cy="262.305" r="7.797"/>
+		<circle fill="#803D36" cx="171.1" cy="218.901" r="7.797"/>
+		<circle fill="#803D36" cx="171.1" cy="197.173" r="7.797"/>
+		<circle fill="#803D36" cx="148.718" cy="284.04" r="7.797"/>
+		<circle fill="#803D36" cx="148.577" cy="240.636" r="7.797"/>
+		<circle fill="#803D36" cx="148.577" cy="262.305" r="7.797"/>
+		<circle fill="#803D36" cx="148.577" cy="218.901" r="7.797"/>
+		<circle fill="#803D36" cx="148.577" cy="197.173" r="7.797"/>
+		<circle fill="#803D36" cx="126.16" cy="284.04" r="7.797"/>
+		<circle fill="#803D36" cx="126.055" cy="240.636" r="7.797"/>
+		<circle fill="#803D36" cx="126.055" cy="262.305" r="7.797"/>
+		<circle fill="#803D36" cx="126.055" cy="218.901" r="7.797"/>
+		<circle fill="#803D36" cx="126.055" cy="197.173" r="7.797"/>
+		<circle fill="#803D36" cx="103.602" cy="284.04" r="7.797"/>
+		<circle fill="#803D36" cx="103.532" cy="240.636" r="7.797"/>
+		<circle fill="#803D36" cx="103.532" cy="262.305" r="7.797"/>
+		<circle fill="#803D36" cx="103.532" cy="218.901" r="7.797"/>
+		<circle fill="#803D36" cx="103.532" cy="197.173" r="7.797"/>
+		<circle fill="#803D36" cx="81.045" cy="284.04" r="7.797"/>
+		<circle fill="#803D36" cx="81.01" cy="240.636" r="7.797"/>
+		<circle fill="#803D36" cx="81.01" cy="262.305" r="7.797"/>
+		<circle fill="#803D36" cx="81.01" cy="218.901" r="7.797"/>
+		<circle fill="#803D36" cx="81.01" cy="197.173" r="7.797"/>
+		<circle fill="#803D36" cx="58.487" cy="284.04" r="7.797"/>
+		<circle fill="#803D36" cx="58.487" cy="240.636" r="7.797"/>
+		<circle fill="#803D36" cx="58.487" cy="262.305" r="7.797"/>
+		<circle fill="#803D36" cx="58.487" cy="218.901" r="7.797"/>
+		<circle fill="#803D36" cx="58.487" cy="197.173" r="7.797"/>
+		<circle fill="#956565" cx="351.736" cy="86.159" r="7.797"/>
+		<circle fill="#956565" cx="351.736" cy="129.644" r="7.797"/>
+		<circle fill="#956565" cx="351.736" cy="107.894" r="7.797"/>
+		<circle fill="#956565" cx="351.28" cy="151.35" r="7.797"/>
+		<circle fill="#956565" cx="351.28" cy="173.085" r="7.797"/>
+		<circle fill="#956565" cx="374.294" cy="86.159" r="7.797"/>
+		<circle fill="#956565" cx="374.294" cy="129.644" r="7.797"/>
+		<circle fill="#956565" cx="374.294" cy="107.894" r="7.797"/>
+		<circle fill="#956565" cx="373.803" cy="151.35" r="7.797"/>
+		<circle fill="#956565" cx="373.803" cy="173.085" r="7.797"/>
+		<circle fill="#956565" cx="396.852" cy="86.159" r="7.797"/>
+		<circle fill="#956565" cx="396.852" cy="129.644" r="7.797"/>
+		<circle fill="#956565" cx="396.852" cy="107.894" r="7.797"/>
+		<circle fill="#956565" cx="328.758" cy="151.35" r="7.797"/>
+		<circle fill="#956565" cx="328.758" cy="173.085" r="7.797"/>
+		<circle fill="#956565" cx="329.179" cy="129.644" r="7.797"/>
+		<circle fill="#B27272" cx="328.758" cy="240.636" r="7.797"/>
+		<circle fill="#B27272" cx="328.758" cy="218.901" r="7.797"/>
+		<circle fill="#B27272" cx="328.758" cy="262.305" r="7.797"/>
+		<circle fill="#B27272" cx="329.179" cy="284.04" r="7.797"/>
+		<circle fill="#B27272" cx="351.28" cy="197.173" r="7.797"/>
+		<circle fill="#B27272" cx="351.28" cy="240.636" r="7.797"/>
+		<circle fill="#B27272" cx="351.28" cy="218.901" r="7.797"/>
+		<circle fill="#B27272" cx="351.28" cy="262.305" r="7.797"/>
+		<circle fill="#B27272" cx="351.736" cy="284.04" r="7.797"/>
+		<circle fill="#B27272" cx="373.803" cy="197.173" r="7.797"/>
+		<circle fill="#B27272" cx="373.803" cy="240.636" r="7.797"/>
+		<circle fill="#B27272" cx="373.803" cy="218.901" r="7.797"/>
+		<circle fill="#B27272" cx="373.803" cy="262.305" r="7.797"/>
+		<circle fill="#B27272" cx="374.294" cy="284.04" r="7.797"/>
+		<circle fill="#B27272" cx="306.235" cy="262.305" r="7.797"/>
+		<circle fill="#B27272" cx="328.758" cy="197.173" r="7.797"/>
+		<circle fill="#B27272" cx="306.621" cy="284.04" r="7.797"/>
+	</g>
+	<g id="passenger" data-name="passenger">
+		<circle fill="#CC1817" cx="58.487" cy="86.159" r="7.797"/>
+		<circle fill="#CC1817" cx="58.487" cy="129.644" r="7.797"/>
+		<circle fill="#CC1817" cx="58.487" cy="107.894" r="7.797"/>
+		<circle fill="#CC1817" cx="58.487" cy="151.35" r="7.797"/>
+		<circle fill="#CC1817" cx="58.487" cy="173.085" r="7.797"/>
+		<circle fill="#CC1817" cx="81.045" cy="86.159" r="7.797"/>
+		<circle fill="#CC1817" cx="81.045" cy="129.644" r="7.797"/>
+		<circle fill="#CC1817" cx="81.045" cy="107.894" r="7.797"/>
+		<circle fill="#CC1817" cx="81.01" cy="151.35" r="7.797"/>
+		<circle fill="#CC1817" cx="81.01" cy="173.085" r="7.797"/>
+		<circle fill="#CC1817" cx="103.602" cy="86.159" r="7.797"/>
+		<circle fill="#CC1817" cx="103.602" cy="129.644" r="7.797"/>
+		<circle fill="#CC1817" cx="103.602" cy="107.894" r="7.797"/>
+		<circle fill="#CC1817" cx="103.532" cy="151.35" r="7.797"/>
+		<circle fill="#CC1817" cx="103.532" cy="173.085" r="7.797"/>
+		<circle fill="#CC1817" cx="126.16" cy="86.159" r="7.797"/>
+		<circle fill="#CC1817" cx="126.16" cy="129.644" r="7.797"/>
+		<circle fill="#CC1817" cx="126.16" cy="107.894" r="7.797"/>
+		<circle fill="#CC1817" cx="126.055" cy="151.35" r="7.797"/>
+		<circle fill="#CC1817" cx="126.055" cy="173.085" r="7.797"/>
+		<circle fill="#CC1817" cx="148.718" cy="86.159" r="7.797"/>
+		<circle fill="#CC1817" cx="148.718" cy="129.644" r="7.797"/>
+		<circle fill="#CC1817" cx="148.718" cy="107.894" r="7.797"/>
+		<circle fill="#CC1817" cx="148.577" cy="151.35" r="7.797"/>
+		<circle fill="#CC1817" cx="148.577" cy="173.085" r="7.797"/>
+		<circle fill="#CC1817" cx="171.275" cy="86.159" r="7.797"/>
+		<circle fill="#CC1817" cx="171.275" cy="129.644" r="7.797"/>
+		<circle fill="#CC1817" cx="171.275" cy="107.894" r="7.797"/>
+		<circle fill="#CC1817" cx="171.1" cy="151.35" r="7.797"/>
+		<circle fill="#CC1817" cx="171.1" cy="173.085" r="7.797"/>
+		<circle fill="#CC1817" cx="193.833" cy="86.159" r="7.797"/>
+		<circle fill="#CC1817" cx="193.833" cy="129.644" r="7.797"/>
+		<circle fill="#CC1817" cx="193.833" cy="107.894" r="7.797"/>
+		<circle fill="#CC1817" cx="193.622" cy="151.35" r="7.797"/>
+		<circle fill="#CC1817" cx="193.622" cy="173.085" r="7.797"/>
+		<circle fill="#CC1817" cx="216.391" cy="86.159" r="7.797"/>
+		<circle fill="#CC1817" cx="216.391" cy="129.644" r="7.797"/>
+		<circle fill="#CC1817" cx="216.391" cy="107.894" r="7.797"/>
+		<circle fill="#CC1817" cx="216.145" cy="151.35" r="7.797"/>
+		<circle fill="#CC1817" cx="216.145" cy="173.085" r="7.797"/>
+		<circle fill="#CC1817" cx="238.948" cy="86.159" r="7.797"/>
+		<circle fill="#CC1817" cx="238.948" cy="129.644" r="7.797"/>
+		<circle fill="#CC1817" cx="238.948" cy="107.894" r="7.797"/>
+		<circle fill="#CC1817" cx="238.667" cy="151.35" r="7.797"/>
+		<circle fill="#CC1817" cx="238.667" cy="173.085" r="7.797"/>
+		<circle fill="#CC1817" cx="261.506" cy="86.159" r="7.797"/>
+		<circle fill="#CC1817" cx="261.506" cy="129.644" r="7.797"/>
+		<circle fill="#CC1817" cx="261.506" cy="107.894" r="7.797"/>
+		<circle fill="#CC1817" cx="261.19" cy="151.35" r="7.797"/>
+		<circle fill="#CC1817" cx="261.19" cy="173.085" r="7.797"/>
+		<circle fill="#CC1817" cx="284.064" cy="86.159" r="7.797"/>
+		<circle fill="#CC1817" cx="284.064" cy="129.644" r="7.797"/>
+		<circle fill="#CC1817" cx="284.064" cy="107.894" r="7.797"/>
+		<circle fill="#CC1817" cx="283.713" cy="151.35" r="7.797"/>
+		<circle fill="#CC1817" cx="283.713" cy="173.085" r="7.797"/>
+		<circle fill="#CC1817" cx="306.621" cy="86.159" r="7.797"/>
+		<circle fill="#CC1817" cx="306.621" cy="129.644" r="7.797"/>
+		<circle fill="#CC1817" cx="306.621" cy="107.894" r="7.797"/>
+		<circle fill="#CC1817" cx="306.235" cy="151.35" r="7.797"/>
+		<circle fill="#CC1817" cx="306.235" cy="173.085" r="7.797"/>
+		<circle fill="#CC1817" cx="329.179" cy="86.159" r="7.797"/>
+		<circle fill="#CC1817" cx="329.179" cy="107.894" r="7.797"/>
+	</g>
+</g>
+<style>
+#g-plot-Artboard_1-interactive-img rect, #g-plot-Artboard_1-interactive-img circle, #g-plot-Artboard_1-interactive-img path, #g-plot-Artboard_1-interactive-img line, #g-plot-Artboard_1-interactive-img polyline, #g-plot-Artboard_1-interactive-img polygon { vector-effect: non-scaling-stroke; }
+</style>
+</svg>
+
+		<div id="tag-p" class="g-tag-1 g-aiAbs g-aiPointText" style="top:17.0066%;margin-top:-10.4px;left:10.6939%;width:166px;">
+			<p class="g-pstyle0">Passengers  40.5%</p>
+		</div>
+		<div id="tag-c" class="g-tag-3 g-aiAbs g-aiPointText" style="top:16.9602%;margin-top:-10.3px;left:72.4648%;width:66px;">
+			<p class="g-pstyle1">Cargo</p>
+		</div>
+		<div id="tag-o" class="g-tag-2 g-aiAbs g-aiPointText" style="top:83.9804%;margin-top:-10.3px;left:63.2492%;width:73px;">
+			<p class="g-pstyle2">Others</p>
+		</div>
+		<div id="tag-m" class="g-tag-4 g-aiAbs g-aiPointText" style="top:85.6151%;margin-top:-10.3px;left:10.694%;width:78px;">
+			<p class="g-pstyle3">Military</p>
+		</div>
+	</div>
+
+</div>
+
+<!-- End ai2html - 2022-04-18 08:43 -->
+			</div>
+		</div>
+        <div class="scrolly-overlay">
+			<div class="step" id="step-zero-1">
+				<p>In all the plane accident records collected by The Aviation Safety Network, there are 153 fatal plane cases.</p>
+			</div>
+			<div class="step" id="step-one-1">
+				<p>Among them, only 40.5% of them have involved with average passengers.</p>
+			</div>
+        </div>
+      </section>
+
+    <script>
+      
+      /* Scrollytelling code goes under here */
+		d3.select("#others").classed("hidden", true)
+		d3.selectAll('.g-tag-1').classed("hidden", true)
+		d3.selectAll('.g-tag-2').classed("hidden", true)
+		d3.selectAll('.g-tag-3').classed("hidden", true)
+		d3.selectAll('.g-tag-4').classed("hidden", true)
+	  
+	d3.select("#step-zero-1").on('stepin',function(e) {
+		d3.select("#others").classed("hidden", false)
+		d3.select("#others").style('opacity',1)
+		d3.selectAll('.g-tag-1').classed("hidden", false)
+		d3.selectAll('.g-tag-2').classed("hidden", false)
+		d3.selectAll('.g-tag-3').classed("hidden", false)
+		d3.selectAll('.g-tag-4').classed("hidden", false)
+	  })
+
+	  d3.select("#step-one-1").on('stepin',function(e) {
+		d3.select("#others").classed("hidden", false)
+		d3.select("#others").style('opacity',0.25)
+		d3.selectAll('.g-tag-1').classed("hidden", false)
+		d3.selectAll('.g-tag-2').classed("hidden", false)
+		d3.selectAll('.g-tag-3').classed("hidden", false)
+		d3.selectAll('.g-tag-4').classed("hidden", false)
+	  })
+    </script>
+
+<section id="scrolly">
+	<div class="sticky-thing">
+		<div class="ai2html-container">
+			<!-- Generated by ai2html v0.106.0 - 2022-04-18 08:52 -->
+<!-- ai file: barchart.ai -->
+<style media="screen,print">
+	#g-barchart-box ,
+	#g-barchart-box .g-artboard {
+		margin:0 auto;
+	}
+	#g-barchart-box p {
+		margin:0;
+	}
+	#g-barchart-box .g-aiAbs {
+		position:absolute;
+	}
+	#g-barchart-box .g-aiImg {
+		position:absolute;
+		top:0;
+		display:block;
+		width:100% !important;
+	}
+	#g-barchart-box .g-aiSymbol {
+		position: absolute;
+		box-sizing: border-box;
+	}
+	#g-barchart-box .g-aiPointText p { white-space: nowrap; }
+	#g-barchart-Artboard_1 {
+		position:relative;
+		overflow:hidden;
+	}
+	#g-barchart-Artboard_1 p {
+		font-family:Open Sans;
+		font-weight:400;
+		line-height:14px;
+		height:auto;
+		opacity:1;
+		letter-spacing:0em;
+		font-size:12px;
+		text-align:left;
+		color:rgb(0,0,0);
+		text-transform:none;
+		padding-bottom:0;
+		padding-top:0;
+		mix-blend-mode:normal;
+		font-style:normal;
+		position:static;
+	}
+	#g-barchart-Artboard_1 .g-pstyle0 {
+		height:14px;
+	}
+	#g-barchart-Artboard_1 .g-pstyle1 {
+		line-height:17px;
+		height:17px;
+		font-size:14px;
+		text-align:right;
+	}
+
+</style>
+
+<div id="g-barchart-box" class="ai2html">
+
+	<!-- Artboard: Artboard_1 -->
+	<div id="g-barchart-Artboard_1" class="g-artboard" style="max-width: 649px;max-height: 611px" data-aspect-ratio="1.062" data-min-width="0">
+<div style="padding: 0 0 94.1844% 0;"></div>
+		<img id="g-barchart-Artboard_1-img" class="g-aiImg" alt="" src="./images/svg/barchart-Artboard_1.png"/>
+<!-- Generator: Adobe Illustrator 25.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg class="g-aiImg" version="1.2" baseProfile="tiny" id="g-barchart-Artboard_1-interactive-img" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	 x="0px" y="0px" viewBox="0 0 649.405 611.257" overflow="visible" xml:space="preserve">
+<g>
+	<g id="other" data-name="other">
+		<rect x="89.27" y="41.085" fill="#A00404" width="10.297" height="20"/>
+		<rect x="89.27" y="41.085" fill="#838484" width="0" height="20"/>
+		<rect x="89.27" y="65.085" fill="#A00404" width="0" height="20"/>
+		<rect x="89.27" y="65.085" fill="#838484" width="0" height="20"/>
+		<rect x="89.27" y="89.085" fill="#A00404" width="0" height="20"/>
+		<rect x="89.27" y="89.085" fill="#838484" width="0" height="20"/>
+		<rect x="89.27" y="113.085" fill="#A00404" width="2.219" height="20"/>
+		<rect x="91.473" y="113.085" fill="#838484" width="5.891" height="20"/>
+		<rect x="89.27" y="137.085" fill="#A00404" width="33.109" height="20"/>
+		<rect x="122.364" y="137.085" fill="#838484" width="11.047" height="20"/>
+		<rect x="89.27" y="209.085" fill="#A00404" width="7.359" height="20"/>
+		<rect x="96.614" y="209.085" fill="#838484" width="5.906" height="20"/>
+		<rect x="89.27" y="233.085" fill="#A00404" width="21.344" height="20"/>
+		<rect x="89.27" y="233.085" fill="#838484" width="0" height="20"/>
+		<rect x="89.27" y="257.085" fill="#A00404" width="14.719" height="20"/>
+		<rect x="89.27" y="257.085" fill="#838484" width="0" height="20"/>
+		<rect x="89.27" y="281.085" fill="#A00404" width="0" height="20"/>
+		<rect x="89.27" y="281.085" fill="#838484" width="0" height="20"/>
+		<rect x="89.27" y="305.085" fill="#A00404" width="50.75" height="20"/>
+		<rect x="89.27" y="305.085" fill="#838484" width="0" height="20"/>
+		<rect x="89.27" y="449.085" fill="#A00404" width="38.984" height="20"/>
+		<rect x="89.27" y="449.085" fill="#838484" width="0" height="20"/>
+		<rect x="89.27" y="473.085" fill="#A00404" width="33.844" height="20"/>
+		<rect x="123.098" y="473.085" fill="#838484" width="111.062" height="20"/>
+		<rect x="89.27" y="497.085" fill="#A00404" width="3.688" height="20"/>
+		<rect x="92.942" y="497.085" fill="#838484" width="3.688" height="20"/>
+		<rect x="89.27" y="521.085" fill="#A00404" width="97.094" height="20"/>
+		<rect x="89.27" y="521.085" fill="#838484" width="0" height="20"/>
+	</g>
+	<g id="1949-bar" data-name="1949-bar">
+		<rect x="89.27" y="161.085" fill="#A00404" width="195.641" height="20"/>
+		<rect x="284.895" y="161.085" fill="#838484" width="39" height="20"/>
+		<rect x="89.27" y="185.085" fill="#A00404" width="87.531" height="20"/>
+		<rect x="176.786" y="185.085" fill="#838484" width="72.094" height="20"/>
+	</g>
+	<g id="1979-bar" data-name="1979-bar">
+		<rect x="89.27" y="329.085" fill="#A00404" width="119.891" height="20"/>
+		<rect x="209.145" y="329.085" fill="#838484" width="32.375" height="20"/>
+		<rect x="89.27" y="353.085" fill="#A00404" width="40.453" height="20"/>
+		<rect x="129.708" y="353.085" fill="#838484" width="100.047" height="20"/>
+		<rect x="89.27" y="377.085" fill="#A00404" width="424.359" height="20"/>
+		<rect x="513.614" y="377.085" fill="#838484" width="106.656" height="20"/>
+		<rect x="89.27" y="401.085" fill="#A00404" width="197.109" height="20"/>
+		<rect x="286.364" y="401.085" fill="#838484" width="200.797" height="20"/>
+		<rect x="89.27" y="425.085" fill="#A00404" width="158.859" height="20"/>
+		<rect x="248.114" y="425.085" fill="#838484" width="104.453" height="20"/>
+	</g>
+	<rect id="dead-case-bar" data-name="dead-case-bar" x="89.27" y="401.085" fill="#7C0404" width="116.899" height="20"/>
+	
+		<polyline id="line" data-name="line" fill="none" stroke="#898989" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
+		123.231,336.893 123.424,341.159 123.458,345.426 123.498,349.704 123.784,353.97 124.436,358.237 124.468,362.503 
+		124.913,366.781 125.383,371.048 125.312,375.314 126.087,379.581 127.618,383.859 129.415,388.125 131.08,392.391 
+		134.075,396.658 130.134,400.936 133.806,405.202 135.753,409.469 140.962,413.735 143.603,418.013 147.789,422.28 
+		154.421,426.546 157.221,430.812 157.558,435.091 158.195,439.357 159.939,443.623 163.959,447.89 171.127,452.168 
+		178.457,456.434 180.034,460.701 202.5,464.967 213.771,469.245 227.945,473.512 244.986,477.778 249.904,482.045 275.24,486.323 
+		300.024,490.589 317.243,494.855 334.761,499.122 357.607,503.4 382.958,507.666 413.117,511.933 447.583,516.199 489.703,520.477 
+		529.78,524.744 561.859,529.01 400.517,533.277 	"/>
+</g>
+<style>
+#g-barchart-Artboard_1-interactive-img rect, #g-barchart-Artboard_1-interactive-img circle, #g-barchart-Artboard_1-interactive-img path, #g-barchart-Artboard_1-interactive-img line, #g-barchart-Artboard_1-interactive-img polyline, #g-barchart-Artboard_1-interactive-img polygon { vector-effect: non-scaling-stroke; }
+</style>
+</svg>
+
+		<div id="g-ai0-1" class="g-text g-aiAbs g-aiPointText" style="top:8.6326%;margin-top:-7.8px;left:3.1257%;width:49px;">
+			<p class="g-pstyle0">1922</p>
+		</div>
+		<div id="g-ai0-2" class="g-text g-aiAbs g-aiPointText" style="top:12.559%;margin-top:-7.8px;left:3.1257%;width:81px;">
+			<p class="g-pstyle0">1922-1927</p>
+		</div>
+		<div id="g-ai0-3" class="g-text g-aiAbs g-aiPointText" style="top:16.4853%;margin-top:-7.8px;left:3.1257%;width:81px;">
+			<p class="g-pstyle0">1927-1932</p>
+		</div>
+		<div id="g-ai0-4" class="g-text g-aiAbs g-aiPointText" style="top:20.4117%;margin-top:-7.8px;left:3.1257%;width:81px;">
+			<p class="g-pstyle0">1932-1937</p>
+		</div>
+		<div id="g-ai0-5" class="g-text g-aiAbs g-aiPointText" style="top:24.338%;margin-top:-7.8px;left:3.1257%;width:81px;">
+			<p class="g-pstyle0">1937-1942</p>
+		</div>
+		<div id="g-ai0-6" class="g-text g-aiAbs g-aiPointText" style="top:28.2643%;margin-top:-7.8px;left:3.1257%;width:81px;">
+			<p class="g-pstyle0">1942-1947</p>
+		</div>
+		<div id="g-ai0-7" class="g-text g-aiAbs g-aiPointText" style="top:32.1907%;margin-top:-7.8px;left:3.1257%;width:81px;">
+			<p class="g-pstyle0">1947-1952</p>
+		</div>
+		<div id="g-ai0-8" class="g-text g-aiAbs g-aiPointText" style="top:36.117%;margin-top:-7.8px;left:3.1257%;width:81px;">
+			<p class="g-pstyle0">1952-1957</p>
+		</div>
+		<div id="g-ai0-9" class="g-text g-aiAbs g-aiPointText" style="top:40.0433%;margin-top:-7.8px;left:3.1257%;width:81px;">
+			<p class="g-pstyle0">1957-1962</p>
+		</div>
+		<div id="g-ai0-10" class="g-text g-aiAbs g-aiPointText" style="top:43.9697%;margin-top:-7.8px;left:3.1257%;width:81px;">
+			<p class="g-pstyle0">1962-1967</p>
+		</div>
+		<div id="g-ai0-11" class="g-text g-aiAbs g-aiPointText" style="top:47.896%;margin-top:-7.8px;left:3.1257%;width:81px;">
+			<p class="g-pstyle0">1967-1972</p>
+		</div>
+		<div id="g-ai0-12" class="g-text g-aiAbs g-aiPointText" style="top:51.8224%;margin-top:-7.8px;left:3.1257%;width:81px;">
+			<p class="g-pstyle0">1972-1977</p>
+		</div>
+		<div id="g-ai0-13" class="g-text g-aiAbs g-aiPointText" style="top:55.7487%;margin-top:-7.8px;left:3.1257%;width:81px;">
+			<p class="g-pstyle0">1977-1982</p>
+		</div>
+		<div id="g-ai0-14" class="g-text g-aiAbs g-aiPointText" style="top:59.675%;margin-top:-7.8px;left:3.1257%;width:81px;">
+			<p class="g-pstyle0">1982-1987</p>
+		</div>
+		<div id="g-ai0-15" class="g-text g-aiAbs g-aiPointText" style="top:63.6014%;margin-top:-7.8px;left:3.1257%;width:81px;">
+			<p class="g-pstyle0">1987-1992</p>
+		</div>
+		<div id="g-ai0-16" class="g-text g-aiAbs g-aiPointText" style="top:67.5277%;margin-top:-7.8px;left:3.1257%;width:81px;">
+			<p class="g-pstyle0">1992-1997</p>
+		</div>
+		<div id="g-ai0-17" class="g-text g-aiAbs g-aiPointText" style="top:71.454%;margin-top:-7.8px;left:3.1257%;width:81px;">
+			<p class="g-pstyle0">1997-2002</p>
+		</div>
+		<div id="g-ai0-18" class="g-text g-aiAbs g-aiPointText" style="top:75.3804%;margin-top:-7.8px;left:3.1257%;width:81px;">
+			<p class="g-pstyle0">2002-2007</p>
+		</div>
+		<div id="g-ai0-19" class="g-text g-aiAbs g-aiPointText" style="top:79.3067%;margin-top:-7.8px;left:3.1257%;width:81px;">
+			<p class="g-pstyle0">2007-2012</p>
+		</div>
+		<div id="g-ai0-20" class="g-text g-aiAbs g-aiPointText" style="top:83.2331%;margin-top:-7.8px;left:3.1257%;width:81px;">
+			<p class="g-pstyle0">2012-2017</p>
+		</div>
+		<div id="g-ai0-21" class="g-text g-aiAbs g-aiPointText" style="top:87.1594%;margin-top:-7.8px;left:3.1257%;width:81px;">
+			<p class="g-pstyle0">2017-2022</p>
+		</div>
+		<div id="text-1" class="g-text-1 g-aiAbs g-aiPointText" style="top:91.3132%;margin-top:-9.2px;right:8.3401%;width:279px;">
+			<p class="g-pstyle1">660 millions passengers carried in 2019</p>
+		</div>
+	</div>
+
+</div>
+
+<!-- End ai2html - 2022-04-18 08:52 -->
+		</div>
+	</div>
+	<div class="scrolly-overlay">
+		<div class="step" id="step-zero-2">
+			<p>This bar chart shows <span style="color: #a00404">fatalities</span> and <span style="color: #838484">survivors</span> in each 5-year-period.  #It supposed to highlight different parts but somehow I failed. Need some debugging!</p>
+		</div>
+		<div class="step" id="step-one-2">
+			<p>Most civil aviation incidents happened before the founding of People’s Republic China, when very few Chinese people can afford the plane tickets and the worldwide plane accidents rate is high; </p>
+		</div>
+		<div class="step" id="step-two-2">
+			<p>and after the Reform and Opening policy, when more people are willing to fly but the civil aviation operation system has not been mature yet.</p>
+		</div>
+		<div class="step" id="step-three-2">
+				<p>In the 1990s the International Airline Passengers Association has labeled China as one of the most dangerous places in the world to fly. </p>
+		</div>
+		<div class="step" id="step-four-2">
+			<p>The deadliest airplane crash ever in China's history was in 1994, with 146 passengers and 14 crew members died.</p>
+	 	</div>
+		<div class="step" id="step-five-2">
+			<p>But in 21st century, there are only eight fatal accidents, despite the huge spike of the total passengers, from less than 100 million in 2000 to 660 million in 2019.</p>
+		</div>
+	</div>
+  </section>
+
+<script>
+  
+  /* Scrollytelling code goes under here */
+	d3.select("#dead-case-bar").classed("hidden", true)
+	d3.select("#1979-bar").classed("hidden", true)
+	d3.select("#1949-bar").classed("hidden", true)
+	d3.select("#line").classed("hidden", true)
+	d3.select("#other").classed("hidden", true)
+	d3.selectAll('.g-text').classed("hidden", true)
+	d3.selectAll('.g-text-1').classed("hidden", true)
+  
+d3.select("#step-zero-2").on('stepin',function(e) {
+	d3.select("#dead-case-bar").classed("hidden", true)
+	d3.select("#1979-bar").classed("hidden", false)
+	d3.select("#1979-bar").style('opacity', 1)
+	d3.select("#1949-bar").classed("hidden", false)
+	d3.select("#1949-bar").style('opacity', 1)
+	d3.select("#line").classed("hidden", true)
+	d3.select("#other").classed("hidden", false)
+	d3.select("#other").style('opacity', 1)
+	d3.selectAll('.g-text').classed("hidden", false)
+	d3.selectAll('.g-text-1').classed("hidden", true)
+  })
+
+  d3.select("#step-one-2").on('stepin',function(e) {
+	d3.select("#dead-case-bar").classed("hidden", true)
+	d3.select("#1979-bar").classed("hidden", false)
+	d3.select("#1979-bar").style('opacity', 0.5)
+	d3.select("#1949-bar").classed("hidden", false)
+	d3.select("#1949-bar").style('opacity', 1)
+	d3.select("#line").classed("hidden", true)
+	d3.select("#other").classed("hidden", false)
+	d3.select("#other").style('opacity', 0.5)
+	d3.selectAll('.g-text').classed("hidden", false)
+	d3.selectAll('.g-text-1').classed("hidden", true)
+  })
+
+  d3.select("#step-two-2").on('stepin',function(e) {
+	d3.select("#dead-case-bar").classed("hidden", true)
+	d3.select("#1979-bar").classed("hidden", false)
+	d3.select("#1979-bar").style('opacity', 1)
+	d3.select("#1949-bar").classed("hidden", false)
+	d3.select("#1949-bar").style('opacity', 0.5)
+	d3.select("#line").classed("hidden", true)
+	d3.select("#other").classed("hidden", false)
+	d3.select("#other").style('opacity', 0.5)
+	d3.selectAll('.g-text').classed("hidden", false)
+	d3.selectAll('.g-text-1').classed("hidden", true)
+  })
+
+  d3.select("#step-three-2").on('stepin',function(e) {
+	d3.select("#dead-case-bar").classed("hidden", false)
+	d3.select("#1979-bar").classed("hidden", false)
+	d3.select("#1979-bar").style('opacity', 1)
+	d3.select("#1949-bar").classed("hidden", false)
+	d3.select("#1949-bar").style('opacity', 0.5)
+	d3.select("#line").classed("hidden", true)
+	d3.select("#other").classed("hidden", false)
+	d3.select("#other").style('opacity', 0.5)
+	d3.selectAll('.g-text').classed("hidden", false)
+	d3.selectAll('.g-text-1').classed("hidden", true)
+  })
+
+  d3.select("#step-four-2").on('stepin',function(e) {
+	d3.select("#dead-case-bar").classed("hidden", true)
+	d3.select("#1979-bar").classed("hidden", false)
+	d3.select("#1979-bar").style('opacity', 1)
+	d3.select("#1949-bar").classed("hidden", false)
+	d3.select("#1949-bar").style('opacity', 0.5)
+	d3.select("#line").classed("hidden", true)
+	d3.select("#other").classed("hidden", false)
+	d3.select("#other").style('opacity', 0.5)
+	d3.selectAll('.g-text').classed("hidden", false)
+	d3.selectAll('.g-text-1').classed("hidden", true)
+  })
+
+  d3.select("#step-five-2").on('stepin',function(e) {
+	d3.select("#dead-case-bar").classed("hidden", true)
+	d3.select("#1979-bar").classed("hidden", false)
+	d3.select("#1979-bar").style('opacity', 0.5)
+	d3.select("#1949-bar").classed("hidden", false)
+	d3.select("#1949-bar").style('opacity', 0.5)
+	d3.select("#line").classed("hidden", false)
+	d3.select("#other").classed("hidden", false)
+	d3.select("#other").style('opacity', 0.5)
+	d3.selectAll('.g-text').classed("hidden", false)
+	d3.selectAll('.g-text-1').classed("hidden", false)
+  })
+</script>
+
+<div class="text-container">
+	<p>Data source: <a href="https://housingdata.org/profile">Vermont Housing Data</a></p>
+	<p>© By Zhaozhou Dai for Vermont Public</p>
+</div>
+
+<div class="vermontpublic-top">
+	<img src="./images/vermont_bottom_1.png" width=1500px>
+	<img src="./images/vermont_bottom_2.png" width=1500px>
+</div>
+
+<script>
+    const scroller = scrollama();
+
+	scroller
+		.setup({
+			step: "#scrolly .scrolly-overlay .step",
+			offset: 0.75,
+			debug: false
+		})
+		.onStepEnter(function({ element, index, direction}) {
+			const event = new CustomEvent('stepin', { detail: { direction: direction } })
+			element.dispatchEvent(event);
+		})
+		.onStepExit(function({ element, index, direction }) {
+			const event = new CustomEvent('stepout', { detail: { direction: direction } })
+			element.dispatchEvent(event);
+		});
+
+	window.addEventListener("resize", scroller.resize);
+</script>
+    <!-- ai2html resizer script -->
+<script type="text/javascript">
+  (function() {
+      // only want one resizer on the page
+      if (document.documentElement.className.indexOf("g-resizer-v3-init") > -1) return;
+      document.documentElement.className += " g-resizer-v3-init";
+      // require IE9+
+      if (!("querySelector" in document)) return;
+      function resizer() {
+          var elements = Array.prototype.slice.call(document.querySelectorAll(".g-artboard[data-min-width]")),
+              widthById = {};
+          elements.forEach(function(el) {
+              var parent = el.parentNode,
+                  width = widthById[parent.id] || parent.getBoundingClientRect().width,
+                  minwidth = el.getAttribute("data-min-width"),
+                  maxwidth = el.getAttribute("data-max-width");
+              widthById[parent.id] = width;
+
+              if (+minwidth <= width && (+maxwidth >= width || maxwidth === null)) {
+                  el.style.display = "block";
+              } else {
+                  el.style.display = "none";
+              }
+          });
+          try {
+              if (window.parent && window.parent.$) {
+                  window.parent.$("body").trigger("resizedcontent", [window]);
+              }
+              if (window.require) {
+                  require(['foundation/main'], function() {
+                      require(['shared/interactive/instances/app-communicator'], function(AppCommunicator) {
+                          AppCommunicator.triggerResize();
+                      });
+                  });
+              }
+          } catch(e) { console.log(e); }
+      }
+
+      document.addEventListener('DOMContentLoaded', resizer);
+      // feel free to replace throttle with _.throttle, if available
+      window.addEventListener('resize', throttle(resizer, 200));        
+
+      function throttle(func, wait) {
+          // from underscore.js
+          var _now = Date.now || function() { return new Date().getTime(); },
+              context, args, result, timeout = null, previous = 0;
+          var later = function() {
+              previous = _now();
+              timeout = null;
+              result = func.apply(context, args);
+              if (!timeout) context = args = null;
+          };
+          return function() {
+              var now = _now(), remaining = wait - (now - previous);
+              context = this;
+              args = arguments;
+              if (remaining <= 0 || remaining > wait) {
+                  if (timeout) {
+                      clearTimeout(timeout);
+                      timeout = null;
+                  }
+                  previous = now;
+                  result = func.apply(context, args);
+                  if (!timeout) context = args = null;
+              } else if (!timeout && options.trailing !== false) {
+                  timeout = setTimeout(later, remaining);
+              }
+              return result;
+          };
+      }
+
+     
+  })();
+</script>
+
+  </body>
+</html>

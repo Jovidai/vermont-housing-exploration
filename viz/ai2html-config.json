@@ -1,0 +1,29 @@
+{
+    
+    "fonts": [
+    {
+        "aifont": "Helvetica-Light",
+        "family":"Helvetica",
+        "weight": "500",
+        "style": ""
+    },
+    {
+        "aifont": "OpenSans-Bold",
+        "family":"Open Sans",
+        "weight": "700",
+        "style": ""
+    },
+    {
+        "aifont": "OpenSans",
+        "family": "Open Sans",
+        "weight": "400",
+        "style": ""
+    },
+    {
+        "aifont": "OpenSans-Italic",
+        "family": "Open Sans",
+        "weight": "400",
+        "style": "italic"
+    }
+    ]
+}

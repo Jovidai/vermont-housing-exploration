@@ -1,0 +1,214 @@
+	
+	html, body {
+		margin: 0;
+		background-color: #f3f3f3; /* #F2E3CE */
+	}
+
+
+  /* .vermontpublic-top {
+    height: 58px;
+    border: 1px solid #007cba;
+    background-color: #007cba;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+        margin-bottom: 30px;
+        background-image: url("./images/vermont_headline.png");
+        background-size:300px;
+        background-repeat: no-repeat;
+        background-position: center;
+    } */
+
+
+  .full-bleed-image {
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+     }
+     
+ .full-bleed-image .image-text {
+     font-family: "Cabin Sketch", cursive;
+     text-align: center;
+     color: #6B543F;
+     text-shadow: 0 0 20px rgb(172, 172, 172);
+     margin-left: 50px;
+     margin-top: 120px;
+     font-size: 50px;
+     line-height: 60px;
+     background-color: #F2E3CE;
+     padding: 20px;
+     }
+
+
+    .title-container {
+     max-width: 760px;
+     margin: 0 auto;
+     padding-top: 10%;
+     }
+
+    /* .byline {
+     max-width: 900px;
+     margin-bottom: 50px;
+     padding-left:10%;
+     padding-top: 15px;
+     font-family:'Courier New', Courier, monospace;
+     color: grey;
+     } */
+
+	.text-container {
+		max-width: 760px;
+	  margin: 0px auto;
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+
+	.byline {
+    font-family: 'Poppins', sans-serif;
+    font-style:italic;
+    /* font-weight: bold; */
+    color: grey;
+    font-size: 15px;
+    text-align: right;
+	  margin-top: 10px;
+	  padding-right: 10px;
+	}
+
+  .byline_2 {
+    font-family: 'Poppins', sans-serif;
+    /* font-style:italic; */
+    color: grey;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: left;
+	  margin-top: 10px;
+	  padding-right: 10px;
+	}
+
+	h1 {
+		  font-family: 'Lora', serif;
+		  color:black;
+		  font-size: 40px;
+		  text-align: center;
+		}
+	
+	a:link {
+  	color: #377E7E;
+  	text-decoration: none;
+    font-weight:bolder;
+	}
+
+	a:visited {
+  	color: #377E7E;
+  	background-color: transparent;
+    font-weight:bolder;
+  }
+
+  a:hover {
+  color:#2B5B8A;
+  background-color: transparent;
+  font-weight:bolder;
+  }
+
+  a:active {
+    color: #377E7E;
+  	background-color: transparent;
+    font-weight:bolder;
+  }
+
+	.chart-headline {
+		font-size: 19px;
+		font-family: 'Open Sans';
+		font-weight:700;
+		text-align: center;
+		margin-top: 50px;
+
+	}
+      #scrolly {
+        position: relative;
+        padding: 1rem;
+        background-color: #f3f3f3;
+      }
+
+
+      .scrolly-overlay {
+        position: relative;
+        padding: 0;
+        max-width: 35rem;
+        margin: 0 auto;
+		    z-index: 100;
+      }
+
+      .sticky-thing {
+        position: -webkit-sticky;
+        position: sticky;
+        left: 0;
+        width: 100%;
+        margin: 0;
+        z-index: 0;
+        top: 0;
+        height: 100vh;
+        /* Center everything inside */
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .step {
+        margin: 0 auto 2rem auto;
+        margin-bottom: 25rem;
+        background-color: #eee;
+        color: black;
+        opacity: 80%;
+      }
+
+      .step p {
+        text-align: center;
+        padding: 1rem;
+        font-size: 1.25rem;
+		   font-family: 'Frank Ruhl Libre', serif;
+		   line-height: 30px;
+      }
+
+      .hidden { visibility: hidden;
+      }
+
+	  p {
+        font-size: 1.25rem;
+		font-family: 'Frank Ruhl Libre', serif;
+		line-height: 35px;
+	  }
+
+      .hidden { visibility: hidden; }
+
+      /* When it's less than 700 pixels wide, do normal scrollytelling */
+      @media only screen and (min-width: 700px) {
+        #scrolly.side-by-side {
+          display: flex;
+        }
+
+        #scrolly.side-by-side > div {
+          flex-basis: 0;
+          flex-grow: 1;
+          flex-shrink: 1;
+          padding: 0.75em;
+        }
+
+        #scrolly.side-by-side .scrolly-overlay {
+          margin-top: 70vh;
+          order: 0;
+          /* Change these to adjust sizing options */
+          min-width: 15rem;
+          max-width: 20rem;
+		  z-index: 100;
+        }
+
+        #scrolly.side-by-side .sticky-thing {
+          order: 1;
+          flex-grow: 2;
+		  z-index: -1;
+        }
+
+}

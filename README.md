@@ -1,1 +1,1 @@
-# vermont-housing-exploration
+# This is a work to explore Vermont's median household, wage and the number of homelessness in different counties.

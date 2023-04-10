@@ -1,7 +1,7 @@
 	
 	html, body {
 		margin: 0;
-		background-color: #f3f3f3; /* #F2E3CE */
+		background-color: white; /* #F2E3CE */
 	}
 
 
@@ -128,7 +128,7 @@
       #scrolly {
         position: relative;
         padding: 1rem;
-        background-color: #f3f3f3;
+        background-color: white;
       }
 
 
@@ -165,7 +165,7 @@
       }
 
       .step p {
-        text-align: center;
+        text-align: center; /* texts position */
         padding: 1rem;
         font-size: 1.25rem;
 		   font-family: 'Frank Ruhl Libre', serif;
@@ -180,8 +180,6 @@
 		font-family: 'Frank Ruhl Libre', serif;
 		line-height: 35px;
 	  }
-
-      .hidden { visibility: hidden; }
 
       /* When it's less than 700 pixels wide, do normal scrollytelling */
       @media only screen and (min-width: 700px) {
@@ -212,3 +210,47 @@
         }
 
 }
+
+
+.flourish-embed {
+  margin-left: 300px;
+  margin-right: 300px;
+}
+
+/* #chart--container {
+  width: 100%;
+}
+
+#chart {
+  width: 80%;
+  float: left;
+  height: 80vh;
+  position: relative;
+}
+
+#filters {
+  width: 20%;
+  float: right;
+}
+
+
+.axis--label {
+  font-size: 13pt;
+  font-weight: bold;
+  text-anchor: middle;
+}
+
+.axis {
+  font-size: 10pt;
+}
+
+.tooltip {
+  position: absolute;
+  visibility: hidden;
+  top: 0px;
+  left: 0px;
+
+  padding: 2px;
+  background-color: rgba(255,255,255,0.8);
+  font-size: 11pt;
+} */
